@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex report"] 1622329020 "report.aux" "report.bbl" "report" 1622329020
+["bibtex report"] 1622369926 "report.aux" "report.bbl" "report" 1622370107
   "C:/Users/rober/AppData/Roaming/MiKTeX/bibtex/bst/apacite/apacite.bst" 1374952728 146156 9d7b79dbf9d91133318126032cff8c27 ""
   "references.bib" 1622299759 1546 6358c111da43a101905280d9f17c9a04 ""
-  "report.aux" 1622329019 2808 26b75885bbf6f0b05f48cc1df6434d53 "pdflatex"
+  "report.aux" 1622370107 3110 9ef6ef20ec5f5f567cf157e3d2de8ef3 "pdflatex"
   (generated)
-  "report.bbl"
   "report.blg"
-["pdflatex"] 1622329021 "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" "report.pdf" "report" 1622329020
+  "report.bbl"
+["pdflatex"] 1622370104 "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" "report.pdf" "report" 1622370107
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbxti10.tfm" 1136768653 1532 9162035f4e7176612125649e348e2195 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -83,13 +83,13 @@
   "C:/Users/rober/AppData/Roaming/MiKTeX/tex/latex/letltxmacro/letltxmacro.sty" 1575403136 5766 13a9e8766c47f30327caf893ece86ac8 ""
   "C:/Users/rober/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty" 1576437552 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/rober/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575574882 9715 b051d5b493d9fe5f4bc251462d039e5f ""
-  "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" 1622329016 1115 259a134891f39e30fc77305e6d8fe4d1 ""
-  "report.aux" 1622329019 2808 26b75885bbf6f0b05f48cc1df6434d53 "pdflatex"
-  "report.bbl" 1622329020 781 0de9f4cf77ede6af59724a2e8f8c8d74 "bibtex report"
-  "report.out" 1622329019 1309 f5735b5597cfa8b610815ba289aad25f "pdflatex"
-  "report.tex" 1622329016 1115 259a134891f39e30fc77305e6d8fe4d1 ""
+  "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" 1622370104 1536 5e94f5853dd147bdcaf31201dc0b0345 ""
+  "report.aux" 1622370107 3110 9ef6ef20ec5f5f567cf157e3d2de8ef3 "pdflatex"
+  "report.bbl" 1622369926 781 0de9f4cf77ede6af59724a2e8f8c8d74 "bibtex report"
+  "report.out" 1622370107 1606 61fb18de295da94091d1319b4572ca25 "pdflatex"
+  "report.tex" 1622370104 1536 5e94f5853dd147bdcaf31201dc0b0345 ""
   (generated)
-  "report.log"
-  "report.aux"
-  "report.out"
   "report.pdf"
+  "report.out"
+  "report.aux"
+  "report.log"
