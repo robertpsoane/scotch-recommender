@@ -14,8 +14,9 @@ A dominant syntactic method for transforming unstructured text into a computer-a
 (BoW) model. 
 The dataset is tokenized (split into individual words), lemmatized (see \autoref{sssec:stemlemma})
 and $k$ keywords are extracted (see \autoref{sssec:kwe}) to form our bag of words $b\in \mathbb{R} ^{k}$.
-Each instance in the dataset is now transformed to a vector $v\in \mathbb{R} ^{k}$ such that $v_i$ is the frequency 
-of the word $b_i$ occuring in the instance \cite{Cambria2014, StevenBirdEwanKlein2009, Zhang2010}.
+Each document\footnote{It is common to refer to an instance in a text dataset as a \emph{document}} is
+transformed to a vector $v\in \mathbb{R} ^{k}$ such that $v_i$ is the frequency 
+of the word $b_i$ occuring in the document \cite{Cambria2014, StevenBirdEwanKlein2009, Zhang2010}.
 
 \subsubsection{Stemming and Lemmatization}\label{sssec:stemlemma}
 When dealing with text data, it is not uncommon to have multiple forms of the same word.  A syntactic model would view
@@ -25,16 +26,27 @@ Porter proposed an algorithm for removing word suffixes to aim for a normal form
 \emph{stemming}. With no semantic understanding, the algorithm searches for specific suffix patterns and removes them
 until it is unable to \cite{Porter1980}.
 
-A semantic approach would be \emph{lemmatization}. Instead of algorithmically removing word endings lemmatization 
+A more semantic approach would be \emph{lemmatization}. Instead of algorithmically removing word endings lemmatization 
 aims to normalise words to a real word root, that is a lemmatizer would reduce the word to the dictionary
 form of the word \cite{Jayakodi2016}.  A lemmatizer implementation in Python is the WordNetLemmatizer in the Python 
 Natural Language Tool Kit (NLTK), which queries the WordNet corpus to find the root word 
 \cite{StevenBirdEwanKlein2009, princetonuniversity_2010}. 
  
 \subsubsection{Keyword Extraction}\label{sssec:kwe}
-For syntactic methods, keyword extraction is key.  
-\subsubsection{TF-IDF}\label{ssec:tfidf}
-\subsubsection{Graph based keyword extraction}\label{sssec:gbkwe}
+For syntactic methods, keyword extraction is key.  For the purposes of this report, a keyword is a word of particular
+relevance or importance, and from which we might extract useful information.  Keyword extraction refers to strategies
+based on which those important words can be ranked, and only the most relevant kept.
+
+\paragraph{TF-IDF}\label{ssec:tfidf}
+
+Onesuch method, is Term Frequency Inverse Document Frequency (TF-IDF). This is commonly used with BoW, and is 
+implemented in Scikit-Learn \cite{Barupal2011}.  TF-IDF is a statistic for scoring a words importance based the word's
+how frequently it occurs in a document, and how frequently it occurs in the dataset \cite{Ramos2003}.
+
+Scoring as such aims to penalise words that occur too frequently across a document, boosting the scores of words in an 
+individual document for which they with disproportionately high frequency.
+
+\paragraph{Graph based keyword extraction}\label{sssec:gbkwe}
 
 \subsubsection{Word2vec}\label{ssec:w2v}
 \subsection{Recommender engines}\label{ssec:recommenders}

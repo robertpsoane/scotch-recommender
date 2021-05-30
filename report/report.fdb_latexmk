@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex report"] 1622385099 "report.aux" "report.bbl" "report" 1622385104
+["bibtex report"] 1622393165 "report.aux" "report.bbl" "report" 1622393218
   "./IEEEtran.bst" 1602589262 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "references.bib" 1622384105 17217 d252102b075e2da4b275583e3d87307f ""
-  "report.aux" 1622385103 11105 9b4cb9437d140b1211a1b459a16a0675 "pdflatex"
+  "references.bib" 1622391180 19832 d9f3f68f042c3095add841912e123ae4 ""
+  "report.aux" 1622393201 10585 74933a913164b414e7dbcc4be4c8b74f "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
-["pdflatex"] 1622385100 "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" "report.pdf" "report" 1622385104
+["pdflatex"] 1622393198 "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" "report.pdf" "report" 1622393218
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233955448 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233955448 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1234368820 996 a18840b13b499c08ac2de96a99eda4bc ""
@@ -118,22 +118,22 @@
   "C:/Users/rober/AppData/Roaming/MiKTeX/tex/latex/letltxmacro/letltxmacro.sty" 1575403136 5766 13a9e8766c47f30327caf893ece86ac8 ""
   "C:/Users/rober/AppData/Roaming/MiKTeX/tex/latex/refcount/refcount.sty" 1576437552 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/rober/AppData/Roaming/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575574882 9715 b051d5b493d9fe5f4bc251462d039e5f ""
-  "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" 1622385091 856 1177c7475e2f07d122b2d0ae4a6696b1 ""
-  "report.aux" 1622385103 11105 9b4cb9437d140b1211a1b459a16a0675 "pdflatex"
-  "report.bbl" 1622385100 4074 fbac2e09ba6cccff5b1b9f5bc9d9914f "bibtex report"
-  "report.out" 1622385103 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "report.tex" 1622385091 856 1177c7475e2f07d122b2d0ae4a6696b1 ""
-  "report.toc" 1622385103 1755 a5a5330636fabb9df2cdff9f1a55af9c "pdflatex"
+  "c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex" 1622393218 856 1177c7475e2f07d122b2d0ae4a6696b1 ""
+  "report.aux" 1622393201 10585 74933a913164b414e7dbcc4be4c8b74f "pdflatex"
+  "report.bbl" 1622393165 4672 b066698bac43c45cb1203493e1e6d30a "bibtex report"
+  "report.out" 1622393201 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "report.tex" 1622393218 856 1177c7475e2f07d122b2d0ae4a6696b1 ""
+  "report.toc" 1622393201 1723 64f583c9942d2a655f898d4504db2e9a "pdflatex"
   "sections/sec-approach.tex" 1622378749 38 579fcbd6eaacb2973ea5cf049b6f0dcf ""
   "sections/sec-conc.tex" 1622378534 36 4f2b18ae5a6053ef6453a8525d3dd22d ""
   "sections/sec-evaluation.tex" 1622378545 69 e7b91bdc3e2bc51673877faba6df27ff ""
   "sections/sec-implementation.tex" 1622379657 39 3aea318e221f018739b46afdc86fc655 ""
   "sections/sec-intro.tex" 1622377783 39 5b8abe6be588d01b900e397ee2a4fcc4 ""
-  "sections/sec-lit.tex" 1622385074 2863 3a34049129064becae9251adc5ab894c ""
+  "sections/sec-lit.tex" 1622393197 3727 1938e8f0864fec09994ba6061b87d4fa ""
   "sections/sec-scotch.tex" 1622379498 3360 a72ea471c401281504234c8df1cf9516 ""
   (generated)
   "report.pdf"
-  "report.out"
   "report.toc"
   "report.aux"
   "report.log"
+  "report.out"

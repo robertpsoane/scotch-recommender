@@ -96,4 +96,16 @@ K.~Jayakodi, M.~Bandara, I.~Perera, and D.~Meedeniya, ``{WordNet and cosine
   \url{https://wordnet.princeton.edu/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Barupal2011}
+P.~Fabian, G.~Varoquaux, A.~Gramfort, M.~Vincent, B.~Thririon, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay, ``{Scikit-learn:
+  Machine Learning in Python},'' \emph{Journal of Machine Learning Research},
+  vol.~12, no.~85, pp. 2825--2830, 2011.
+
+\bibitem{Ramos2003}
+J.~Ramos, ``{Using TF-IDF to Determine Word Relevance in Document Queries},''
+  \emph{Proceedings of the first instructional conference on machine learning},
+  vol. 242, no.~1, pp. 29--48, 2003.
+
 \end{thebibliography}

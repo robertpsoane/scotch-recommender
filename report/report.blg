@@ -16,45 +16,45 @@ Database file #1: references.bib
 Warning--empty author in legislation.gov.uk_2009
 
 Done.
-You've used 13 entries,
+You've used 15 entries,
             4087 wiz_defined-function locations,
-            918 strings with 9624 characters,
-and the built_in function-call counts, 9362 in all, are:
-= -- 803
-> -- 165
-< -- 91
-+ -- 93
-- -- 23
-* -- 467
-:= -- 1495
-add.period$ -- 26
-call.type$ -- 13
-change.case$ -- 12
-chr.to.int$ -- 195
-cite$ -- 14
-duplicate$ -- 665
-empty$ -- 707
-format.name$ -- 29
-if$ -- 2143
+            934 strings with 10247 characters,
+and the built_in function-call counts, 11597 in all, are:
+= -- 975
+> -- 250
+< -- 113
++ -- 139
+- -- 40
+* -- 580
+:= -- 1804
+add.period$ -- 30
+call.type$ -- 15
+change.case$ -- 14
+chr.to.int$ -- 243
+cite$ -- 16
+duplicate$ -- 814
+empty$ -- 857
+format.name$ -- 47
+if$ -- 2665
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 103
-newline$ -- 72
-num.names$ -- 11
-pop$ -- 203
+int.to.str$ -- 15
+missing$ -- 134
+newline$ -- 78
+num.names$ -- 13
+pop$ -- 271
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 728
+skip$ -- 896
 stack$ -- 0
-substring$ -- 458
-swap$ -- 560
-text.length$ -- 26
+substring$ -- 572
+swap$ -- 701
+text.length$ -- 32
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 13
+type$ -- 15
 warning$ -- 1
-while$ -- 48
-width$ -- 15
-write$ -- 162
+while$ -- 58
+width$ -- 17
+write$ -- 184
 (There was 1 warning)
