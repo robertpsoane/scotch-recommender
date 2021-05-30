@@ -2,22 +2,123 @@ PWD c:\Users\rober\Google Drive\Programming\Python\scotch-recommender\report
 INPUT C:\Users\rober\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\rober\Google Drive\Programming\Python\scotch-recommender\report\report.tex
 OUTPUT report.log
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
-INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrartcl.cls
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\footmisc\footmisc.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\footmisc\footmisc.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\koma-script\scrkbase.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\babel\babel.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\babel\babel.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\babel\babel.sty
@@ -62,16 +163,6 @@ INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
-INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\ifvtex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\ifvtex.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\ifvtex.sty
@@ -174,6 +265,32 @@ INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption-koma.sto
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption-koma.sto
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption-koma.sto
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\caption\caption-koma.sto
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
@@ -440,17 +557,6 @@ INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\generic\uniquecounter\uniquecoun
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\generic\bigintcalc\bigintcalc.sty
 INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\apacite.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
@@ -530,46 +636,160 @@ INPUT .\report.out
 INPUT report.out
 INPUT .\report.out
 INPUT report.out
-OUTPUT report.pdf
 INPUT .\report.out
 INPUT .\report.out
 OUTPUT report.out
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\english.apc
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\english.apc
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\english.apc
-INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\apacite\english.apc
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
+OUTPUT report.pdf
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bookmark.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bkm-pdftex.def
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bkm-pdftex.def
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bkm-pdftex.def
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\bookmark\bkm-pdftex.def
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmss10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
-INPUT .\report.bbl
-INPUT report.bbl
-INPUT .\report.bbl
-INPUT report.bbl
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\umsb.fd
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmssbx10.tfm
+INPUT .\report.toc
+INPUT report.toc
+INPUT report.toc
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+OUTPUT report.toc
+INPUT .\sections\sec-intro.tex
+INPUT .\sections\sec-intro.tex
+INPUT .\sections\sec-intro.tex
+INPUT sections\sec-intro.tex
+INPUT .\sections\sec-intro.tex
+INPUT .\sections\sec-intro.tex
+INPUT sections\sec-intro.tex
+INPUT .\sections\sec-scotch.tex
+INPUT .\sections\sec-scotch.tex
+INPUT .\sections\sec-scotch.tex
+INPUT sections\sec-scotch.tex
+INPUT .\sections\sec-scotch.tex
+INPUT .\sections\sec-scotch.tex
+INPUT sections\sec-scotch.tex
 INPUT C:\Users\rober\AppData\Local\MiKTeX\pdftex\config\pdftex.map
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex9.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti9.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT .\sections\sec-lit.tex
+INPUT .\sections\sec-lit.tex
+INPUT .\sections\sec-lit.tex
+INPUT sections\sec-lit.tex
+INPUT .\sections\sec-lit.tex
+INPUT .\sections\sec-lit.tex
+INPUT sections\sec-lit.tex
+INPUT .\sections\sec-approach.tex
+INPUT .\sections\sec-approach.tex
+INPUT .\sections\sec-approach.tex
+INPUT sections\sec-approach.tex
+INPUT .\sections\sec-approach.tex
+INPUT .\sections\sec-approach.tex
+INPUT sections\sec-approach.tex
+INPUT .\sections\sec-implementation.tex
+INPUT .\sections\sec-implementation.tex
+INPUT .\sections\sec-implementation.tex
+INPUT sections\sec-implementation.tex
+INPUT .\sections\sec-implementation.tex
+INPUT .\sections\sec-implementation.tex
+INPUT sections\sec-implementation.tex
+INPUT .\sections\sec-evaluation.tex
+INPUT .\sections\sec-evaluation.tex
+INPUT .\sections\sec-evaluation.tex
+INPUT sections\sec-evaluation.tex
+INPUT .\sections\sec-evaluation.tex
+INPUT .\sections\sec-evaluation.tex
+INPUT sections\sec-evaluation.tex
+INPUT .\sections\sec-conc.tex
+INPUT .\sections\sec-conc.tex
+INPUT .\sections\sec-conc.tex
+INPUT sections\sec-conc.tex
+INPUT .\sections\sec-conc.tex
+INPUT .\sections\sec-conc.tex
+INPUT sections\sec-conc.tex
+INPUT .\report.bbl
+INPUT report.bbl
+INPUT .\report.bbl
+INPUT report.bbl
 INPUT report.aux
 INPUT .\report.out
 INPUT .\report.out
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmssbx10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmssbx10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti9.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti9.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb

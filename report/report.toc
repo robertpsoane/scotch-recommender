@@ -1,0 +1,22 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {2}Scotch: Distilled}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}A brief overview of Scotch}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Whisky and words}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Background and Literature}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Language Models}{2}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Stemming and Lemmatization}{3}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Keyword Extraction}{3}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}TF-IDF}{3}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Graph based keyword extraction}{3}{subsubsection.3.1.4}%
+\contentsline {subsubsection}{\numberline {3.1.5}Word2vec}{3}{subsubsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.2}Recommender engines}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Collaborative filters}{3}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Content Driven Recommendations}{3}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Machine learning applications to Whisky}{3}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Approach}{3}{section.4}%
+\contentsline {section}{\numberline {5}Implementation}{3}{section.5}%
+\contentsline {section}{\numberline {6}Results}{3}{section.6}%
+\contentsline {section}{\numberline {7}Discussion}{3}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{3}{section.8}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

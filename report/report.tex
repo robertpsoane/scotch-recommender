@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, oneside, notitlepage]{article}
+\documentclass[11pt, a4paper, oneside, notitlepage]{scrartcl}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 
@@ -6,44 +6,39 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{amssymb}
 
+\bibliographystyle{IEEEtran}
 \usepackage[hidelinks]{hyperref}
 
-\usepackage{apacite}
+
 
 \geometry{top=1cm,bottom=1.5cm,left=2cm,right=2cm,includehead,includefoot}
 
-\bibliographystyle{apacite}
 
-
-
-\title{An NLP-Based Whisky Recommender Engine}
-
+\title{An NLP-Based Scotch Whisky Recommender Engine}
+\subtitle{COMP3004 - Designing Intelligent Agents}
 \author{Robert Soane}
-\date{\today}
+\date{June 2021}
 
 \begin{document}
-
 \maketitle
-\section{Introduction}\label{sec:intro}
 
-\section{Whisky: Distilled}\label{sec:whisky}
-This project concerns itself with the specific domain of whisky. To fully understand the problem at hand, a basic
-understanding of the drink is required.  For this reason, in this section I present a brief history of whisky, and 
-and a brief overview of the its lexicon. From thereon in whisky-specific terms can be used without explanation.
-\subsection{A History of Whisky}
-\section{Preprocessing and Keyword Extraction}\label{sec:kwe}
-In general, Natural Language Processing (NLP) tasks require a language model of some form or another \cite{Ranjan2016},
-this could be 
-\subsection{TF IDF}\label{ssec:tfidf}
-\subsection{\emph{Word2vec}}
-\subsection{Graph Based Methods}
-\section{Real Time Recommendations}\label{sec:recommendations}
- 
-\section{Methodology}\label{sec:meth}
-\section{Results}\label{sec:res}
-\section{Discussion}\label{sec:disc}
-\section{Conclusion}\label{sec:conc}
+\tableofcontents
+
+\input{sections/sec-intro}
+
+\input{sections/sec-scotch}
+
+\input{sections/sec-lit}
+
+\input{sections/sec-approach}
+
+\input{sections/sec-implementation}
+
+\input{sections/sec-evaluation}
+
+\input{sections/sec-conc}
 
 \bibliography{references}
 
