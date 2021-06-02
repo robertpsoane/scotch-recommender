@@ -108,4 +108,51 @@ J.~Ramos, ``{Using TF-IDF to Determine Word Relevance in Document Queries},''
   \emph{Proceedings of the first instructional conference on machine learning},
   vol. 242, no.~1, pp. 29--48, 2003.
 
+\bibitem{muhammad}
+\BIBentryALTinterwordspacing
+R.~B. Muhammad, ``Graph theory: Definitions and examples.'' [Online].
+  Available:
+  \url{http://personal.kent.edu/~rmuhamma/GraphTheory/MyGraphTheory/defEx.htm}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Rose2010}
+S.~Rose, D.~Engel, N.~Cramer, and W.~Cowley, ``{Automatic keyword
+  extraction},'' \emph{Text Mining: Applications and Theory}, pp. 1----277,
+  2010.
+
+\bibitem{Beliga2015}
+\BIBentryALTinterwordspacing
+S.~Beliga, A.~Mestrovic, and S.~Martincic-Ipsic, ``{An Overview of Graph-Based
+  Keyword Extraction Methods and Approaches},'' \emph{Journal of Information
+  and Organizational Sciences}, vol.~39, no.~1, 2015. [Online]. Available:
+  \url{https://hrcak.srce.hr/140857}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Bonacich2007}
+\BIBentryALTinterwordspacing
+P.~Bonacich, ``{Some unique properties of eigenvector centrality},''
+  \emph{Social Networks}, vol.~29, no.~4, pp. 555--564, oct 2007. [Online].
+  Available:
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S0378873307000342}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Newman2010}
+M.~E.~J. Newman, ``{Mathematics of networks},'' \emph{Networks}, pp. 109--167,
+  2010.
+
+\bibitem{Mikolov2013}
+T.~Mikolov, K.~Chen, G.~Corrado, and J.~Dean, ``{Efficient estimation of word
+  representations in vector space},'' in \emph{1st International Conference on
+  Learning Representations, ICLR 2013 - Workshop Track Proceedings}, 2013, pp.
+  1--12.
+
+\bibitem{McCormick2017}
+C.~McCormick, ``{Word2Vec Tutorial - The Skip-Gram Model},'' pp. 1--39, 2017.
+
+\bibitem{Liu2020}
+\BIBentryALTinterwordspacing
+Q.~Liu, M.~J. Kusner, and P.~Blunsom, ``{A Survey on Contextual Embeddings},''
+  2020. [Online]. Available: \url{http://arxiv.org/abs/2003.07278}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

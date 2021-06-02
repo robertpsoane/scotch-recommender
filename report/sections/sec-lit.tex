@@ -3,7 +3,7 @@
 \subsection{Language Models}\label{ssec:kwe}
 In general, Natural Language Processing (NLP) tasks require a language model of some form or another.
 Artificial Intelligence (AI) based methods cannot process text in its native unstructured form, but need to convert the
-raw text to a structured form suitable for the computer to understand.
+raw text to a structured form suitable for the computer to understand. This is often referred to as \emph{embedding}.
 
 The two predominant model types are \emph{syntactic} and \emph{semantic} models. 
 Syntactic methods transform text to a set of `symbols' which carry no inherent meaning, but can be 
@@ -13,9 +13,9 @@ retain a general understanding of the text \cite{Cambria2014}.
 A dominant syntactic method for transforming unstructured text into a computer-analysable form is the Bag-of-words 
 (BoW) model. 
 The dataset is tokenized (split into individual words), lemmatized (see \autoref{sssec:stemlemma})
-and $k$ keywords are extracted (see \autoref{sssec:kwe}) to form our bag of words $b\in \mathbb{R} ^{k}$.
+and $k$ keywords are extracted (see \autoref{sssec:kwe}) to form our bag of words $\utilde{b}\in \mathbb{R} ^{k}$.
 Each document\footnote{It is common to refer to an instance in a text dataset as a \emph{document}} is
-transformed to a vector $v\in \mathbb{R} ^{k}$ such that $v_i$ is the frequency 
+transformed to a vector $\utilde{v}\in \mathbb{R} ^{k}$ such that $v_i$ is the frequency 
 of the word $b_i$ occuring in the document \cite{Cambria2014, StevenBirdEwanKlein2009, Zhang2010}.
 
 \subsubsection{Stemming and Lemmatization}\label{sssec:stemlemma}
@@ -48,10 +48,35 @@ individual document for which they with disproportionately high frequency.
 
 \paragraph{Graph based keyword extraction}\label{sssec:gbkwe}
 
+Another approach for keyword extraction is the use of graph-based ranking methods.  These methods model words as
+nodes on a mathematical network graph\footnote{A graph $G$ being a set of nodes $V$ and edges $E$.  For a brief 
+summary see Rashid Bin Muhammad's site http://personal.kent.edu/~rmuhamma/GraphTheory/MyGraphTheory/defEx.htm
+\cite{muhammad}.}.  A popular example is the \emph{Rapid Automatic Keyword Extraction} (RAKE) algorithm, which
+splits finds a set of candidate keywords, and models them as a co-occurence graph.  
+
+Each node represents a candidate, each edge co-occurence, and it's weight the number of co-occurences.  The 
+candidates are then ranked according to frequency and degree (sum of weights)~\cite{Rose2010}.
+
+Beliga et al., survey a wide range of graph based keyword extraction techniques, many of which rely on different 
+centrality measures \cite{Beliga2015}. Onesuch centrality measure which may be useful for this problem is 
+eigencentrality \cite{Bonacich2007}. Essentially, eigencentrality aims to assign each node as a proportion of the
+sum of all nodes to which it is connected.  Suppose we have a graph, with an adjacency matrix $A$, with $x_i$ being
+the centrality of the $i^{th}$ node, we would set $x_i = \frac{1}{\lambda}A_{ij}x_j$ (using the summation convention). This
+reduces to the eigenvector equation $\textbf{A}\cdot \utilde{x} = \lambda \utilde{x}$. This is given with more detail in 
+\cite{Newman2010}.
+
 \subsubsection{Word2vec}\label{ssec:w2v}
+\emph{Word2vec} is a semantic language model developed by Google.  Instead of encoding each word as a discrete symbol
+as with BoW, word2vec embeddings retain similarity between similar words. This is achieved by training an \emph{Artificial 
+Neural Network} (ANN) to predict the surrounding words for any given word.  The weights of the hiddern layer represent
+probabilities of respective surrounding words. These probability vectors are used as embeddings for each word. As a words
+embedding now reflects the likely surrounding words, synonyms are mapped to similar vectors.
+\cite{Mikolov2013, McCormick2017, Liu2020}
+
 \subsection{Recommender engines}\label{ssec:recommenders}
-\subsubsection{Collaborative filters}\label{sssec:collab}
-\subsubsection{Content Driven Recommendations}\label{sssec:content}
+There are two main classes of recommender engine described in this section.
+\paragraph{Collaborative Filtering}
+\paragraph{Content Based Recommenders}
 
 \subsection{Machine learning applications to Whisky}\label{ssec:ml2whisk}
 

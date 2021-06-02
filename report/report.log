@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  30 MAY 2021 17:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  1 JUN 2021 12:08
 entering extended mode
 **"c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex"
 (c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex
@@ -321,7 +321,10 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Program Files\MiKTeX\tex/latex/hyperref\hyperref.sty
+)) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/undertilde\undertilde.sty
+Package: undertilde 2000/08/08 v1.0 Tilde under a math object
+\knuthian@fdfive=\skip63
+) (C:\Program Files\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
  (C:\Users\rober\AppData\Roaming\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
@@ -423,7 +426,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
 )
-\Hy@SectionHShift=\skip63
+\Hy@SectionHShift=\skip64
 ) (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count275
@@ -554,7 +557,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  (sections/sec-intro.tex) (sections/sec-scotch.tex [1
 
 
-{C:/Users/rober/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]) (sections/sec-lit.tex [2]) (sections/sec-approach.tex) (sections/sec-implementation.tex) (sections/sec-evaluation.tex) (sections/sec-conc.tex) (report.bbl [3] [4]) [5]
+{C:/Users/rober/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]) (sections/sec-lit.tex [2] [3]) (sections/sec-approach.tex) (sections/sec-implementation.tex) (sections/sec-evaluation.tex) (sections/sec-conc.tex) (report.bbl [4]) [5]
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
 (LaTeX3)     46.
@@ -572,17 +575,17 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14085 strings out of 479173
- 242460 string characters out of 2864045
- 697614 words of memory out of 3000000
- 31441 multiletter control sequences out of 15000+600000
- 415039 words of font info for 72 fonts, out of 8000000 for 9000
+ 14123 strings out of 479173
+ 243142 string characters out of 2864045
+ 698786 words of memory out of 3000000
+ 31460 multiletter control sequences out of 15000+600000
+ 415347 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,8n,110p,10703b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (5 pages, 172675 bytes).
+ 108i,8n,110p,10703b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (5 pages, 219582 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 47 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 281 PDF objects out of 1000 (max. 8388607)
+ 61 named destinations out of 1000 (max. 500000)
+ 153 words of extra memory for PDF output out of 10000 (max. 10000000)
 

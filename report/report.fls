@@ -291,6 +291,17 @@ INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
+INPUT C:\Users\rober\AppData\Roaming\MiKTeX\tex\latex\undertilde\undertilde.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty
@@ -734,6 +745,7 @@ INPUT sections\sec-lit.tex
 INPUT .\sections\sec-lit.tex
 INPUT .\sections\sec-lit.tex
 INPUT sections\sec-lit.tex
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT .\sections\sec-approach.tex
 INPUT .\sections\sec-approach.tex
 INPUT .\sections\sec-approach.tex
@@ -769,10 +781,16 @@ INPUT report.bbl
 INPUT report.aux
 INPUT .\report.out
 INPUT .\report.out
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
@@ -787,6 +805,8 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmssbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmssbx10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
+INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmti9.pfb

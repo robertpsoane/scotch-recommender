@@ -18,7 +18,9 @@ class ListFeatureVectorizer:
             
             if norm:
                 docvec = np.array(docvec)
-                docvec = docvec / np.linalg.norm(docvec)
+                nrm = np.linalg.norm(docvec)
+                if nrm > 0:
+                    docvec = docvec / nrm
                 docvec = list(docvec)
 
             list_vec.append(docvec)

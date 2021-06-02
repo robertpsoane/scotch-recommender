@@ -176,7 +176,7 @@ class GraphKE:
         else:
             keywords = self.ranked_nodes
 
-        return keywords
+        return [word[0] for word in keywords]
 
 
     def __repr__(self):
