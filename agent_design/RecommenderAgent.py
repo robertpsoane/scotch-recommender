@@ -611,7 +611,7 @@ class WhiskyRecommender:
         computationally intensive to also normalise the output.
         """
         M = np.array(df.drop(columns=["ID"]))
-        sims = abs(np.matmul(M, np.transpose(vec)))
+        sims = np.matmul(M, np.transpose(vec))
         simdat = pd.DataFrame(sims, columns=[name + "cossim"])
         simdat.index = df["ID"]
         return simdat
@@ -732,7 +732,7 @@ class WhiskyRecommender:
         
         return recommendations
 
-    def recommendDD(self, user_input : RecommenderInput):
+    def recommendDD(self, user_input : RecommenderInput) -> list[WhiskyDict]:
         """
         Dream Dram recommendation function
         """
@@ -795,6 +795,9 @@ class BaselineRecommender(WhiskyRecommender):
 
         recs = [self.getWhiskyByID(w_id) for w_id in rec_ids]
         return recs
+
+    def recommendDD(self, user_input : RecommenderInput) -> list[WhiskyDict]:
+        return self.recommend(user_input)
 
 
 if __name__ == "__main__":
