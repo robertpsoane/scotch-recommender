@@ -7,7 +7,7 @@ import json
 import sqlite3
 from pandas.io.sql import table_exists
 from requests import models
-
+import random
 from requests.models import parse_header_links
 from whiskynlp.GraphKeywordExtraction import GraphKE
 from whiskynlp.Vectorizer import ListFeatureVectorizer
@@ -21,7 +21,7 @@ N_GEN = 200
 N_REC = 10
 DEF_PARAMS = {
             "Abv" : [0, 100],
-            "Price" : [0, None],
+            "Price" : [0, 100000],
             "Size" : [50, 100]
         }
 
@@ -30,7 +30,6 @@ class TastingNotes(TypedDict, total=False):
     Nose : str
     Palate : str
     Finish : str
-    General : str
 
 class WhiskyDict(TypedDict):
     ID : str
@@ -44,7 +43,9 @@ class WhiskyDict(TypedDict):
     URL : str
 
 class RecommenderParams(TypedDict, total=False):
-    n_recommendations : int or None
+    Abv : List[int]
+    Price : List[int]
+    Size : List [int]
 
 class CatPreferences(TypedDict, total=False):
     likes : list[str]
@@ -59,6 +60,7 @@ class RecommenderPreferences(TypedDict, total=False):
 class RecommenderInput(TypedDict, total=False):
     preferences : CatPreferences
     params : RecommenderParams
+
 
 # Useful vector functions:
 def normVec(v):
@@ -444,6 +446,14 @@ class WhiskyRecommender:
     ################################
     ####  DB  Search  Functions ####
     ################################
+    def loadModelledWhiskys(self, model : str, ids : list[str]) -> pd.DataFrame:
+        """
+        Get all modelled whiskys of given ids in a dataframe.
+        Takes the name of a model and a list of ids
+        """
+        sql_query = f"SELECT * FROM {model}_model WHERE ID in ({', '.join(ids)});"
+        return pd.read_sql(sql_query,self.alchemy)
+
     def getWhiskyByID(self, ID : str) -> WhiskyDict:
         """
         Query database for whisky by ID.
@@ -452,7 +462,12 @@ class WhiskyRecommender:
         con = self.dbcon()
         cur = con.cursor()
         cur.execute(
-            """SELECT `ID`, `Type`, `Name`, `Description`, `Nose`, `Palate`, `Finish`, `Price`, `Size`, `ABV`, `URL` FROM whiskys WHERE ID=:id""", {"id":ID}
+            """
+            SELECT  `ID`, `Type`, `Name`, `Description`, `Nose`, `Palate`,
+                    `Finish`, `Price`, `Size`, `ABV`, `URL`
+            FROM whiskys
+            WHERE ID=:id""", 
+            {"id":ID}
         )
         whisky = cur.fetchone()
         con.close()
@@ -462,12 +477,39 @@ class WhiskyRecommender:
             whisky={}
         return whisky
     
+    def searchByURL(self, URL : str) -> list[dict]:
+        con = self.dbcon()
+        cur = con.cursor()
+        cur.execute(
+            f"""
+            SELECT `ID`, `Name`
+            FROM `whiskys` 
+            WHERE `URL` = :url
+            """,
+            {
+                "url":URL
+            }
+        )
+        whiskys = cur.fetchall()
+        con.close()
+
+        try:
+            whiskys = list(
+                whiskys[0]
+            )
+        except IndexError:
+            whiskys = []
+            
+        return whiskys
+
     def searchWhiskys(self, term : str, col : str) -> list[WhiskyDict]:
         con = self.dbcon()
         cur = con.cursor()
         cur.execute(
-            f"""SELECT   `ID`, `Type`, `Name`, `Description`, `Nose`, `Palate`,
-                        `Finish`, `Price`, `Size`, `ABV`, `URL` FROM `whiskys` 
+            f"""
+            SELECT  `ID`, `Type`, `Name`, `Description`, `Nose`, `Palate`,
+                    `Finish`, `Price`, `Size`, `ABV`, `URL` 
+            FROM `whiskys` 
             WHERE {col}
             LIKE :term ;""",
         {
@@ -528,8 +570,7 @@ class WhiskyRecommender:
             dislike_ids = user_input[model]["dislikes"]
             
             # Get all vectors from model with IDs that we want
-            sql_query = f"SELECT * FROM {model}_model WHERE ID in ({', '.join(ids_lst)});"
-            table = pd.read_sql(sql_query,self.alchemy)
+            table = self.loadModelledWhiskys(model, ids_lst)
             
             no_ID = table.drop(columns=["ID"])
             
@@ -575,19 +616,19 @@ class WhiskyRecommender:
         simdat.index = df["ID"]
         return simdat
 
-    def getPossibleIDs(self, uinput : RecommenderInput) -> tuple[pd.DataFrame,list]:
+    def getPossibleIDs(self, params : RecommenderParams) -> tuple[pd.DataFrame,list]:
         """
         Takes a dataframe of whiskys, and filters by set of parameters to
         produce reduced set of IDs that satisfy those parameters.
         """
         query = "SELECT ID FROM whiskys WHERE "
 
-        params = uinput["params"]
         # Iterating over possible parameters - if in params dictionary,
         # check if valid.  If valid, then add to query, else add default
         # to query
         conditions = []
         for param in DEF_PARAMS:
+            def_choice = DEF_PARAMS[param]
             if (param in params):
                 choice = params[param]
                 if type(choice[0]) is int:
@@ -595,16 +636,16 @@ class WhiskyRecommender:
                 elif choice[0] is None:
                     pass
                 else:
-                    conditions.append(f"{param} >= {DEF_PARAMS[param][0]}")
+                    conditions.append(f"{param} >= {def_choice[0]}")
                 if type(choice[1]) is int:
                     conditions.append(f"{param} <= {choice[1]}")
-                elif choice[0] is None:
+                elif choice[1] is None:
                     pass
                 else:
-                    conditions.append(f"{param} <= {DEF_PARAMS[param][1]}")
+                    conditions.append(f"{param} <= {def_choice[1]}")
             else:
-                conditions.append(f"{param} >= {DEF_PARAMS[param][0]}")
-                conditions.append(f"{param} <= {DEF_PARAMS[param][1]}")
+                conditions.append(f"{param} >= {def_choice[0]}")
+                conditions.append(f"{param} <= {def_choice[1]}")
         query = query + " AND ".join(conditions) + ";"
          
         # Get all ids from query
@@ -629,29 +670,40 @@ class WhiskyRecommender:
 
         sim_id = ids.join(sims).mean(1).to_frame(name="mean_cossim")
         sorted_sim_id = sim_id.sort_values(by="mean_cossim", ascending=False)
-        rec_ids = list(sorted_sim_id[:N_REC].index)
+        rec_ids = list(sorted_sim_id.index)
+        if len(rec_ids) > N_REC:
+            rec_ids = rec_ids[:N_REC]
         recommendations = [self.getWhiskyByID(w_id) for w_id in rec_ids]
         return recommendations
     
     ################################
     ### Dream Dram Aux Functions ###
     ################################
-    def dreamDramEmbedding(self, dream_dram : TastingNotes):
-        """
-        Takes dictionary of the following form:
-        {
-            "Nose": nose dream dram,
-            "Palate": dream palate,
-            "Finish": dream finish
-        }
-        """
-        # kws = self.loadKWs()
-        # embeddings = {
-        #     "Nose":self.stringToEmbedding
-        # }
-        # return embeddings
+    def getDreamDramVector(self, dream_dram : TastingNotes, ids : list) -> tuple[dict, set]:
         
-        pd.DataFrame()
+
+        # Defining caching dictionaries        
+        vecs = {}
+        models = {}
+        ids = ['\'' + w_id + '\'' for w_id in ids]
+
+        kws = self.loadKWs()
+
+        for model in dream_dram:
+            # Modelling dream dram as a vector
+            lfv = self.lfv(kws[model.lower()])
+            vecs[model] = normVec(
+                    np.array(
+                        lfv.fit(dream_dram[model])
+                    )
+            )
+
+            # Loading all possible models as a dataframe
+            table = self.loadModelledWhiskys(model, ids)
+            
+            models[model] = table
+        
+        return vecs, models   
 
     #################################
     # Recommendation Main Functions #
@@ -663,16 +715,44 @@ class WhiskyRecommender:
             - Returns a list of Tasting Notes
         """
         # Extracting parameters and filtering possible whiskys
+        params = user_input["params"]
+        user_prefs = user_input["preferences"]
+
+        ids, ids_lst = self.getPossibleIDs(params)
         
-        ids, ids_lst = self.getPossibleIDs(user_input)
-        
+    
         # Get set of ideal vectors - one for each relevant model
         ideal_vectors, models = self.vectorizePreferenceIDs(
-                                        user_input["preferences"],
+                                        user_prefs,
                                         ids_lst
                                     )
         
         recommendations = self.recommendFromVectors(ideal_vectors, models, ids)   
+        
+        
+        return recommendations
+
+    def recommendDD(self, user_input : RecommenderInput):
+        """
+        Dream Dram recommendation function
+        """
+        params = user_input["params"]
+        user_prefs = user_input["preferences"]
+
+        # Format Dream Dram as dataframe
+        user_prefs = {key : [user_prefs[key]] for key in user_prefs}
+        
+        
+        # Getting possible IDs of dream dram
+        ids, ids_lst = self.getPossibleIDs(params)
+
+        # Get set of ideal vectors - one for each relevant model
+        ideal_vectors, models = self.getDreamDramVector(
+                                        user_prefs,
+                                        ids_lst
+                                    )
+        
+        recommendations = self.recommendFromVectors(ideal_vectors, models, ids) 
         
         return recommendations
 
@@ -689,45 +769,45 @@ class WhiskyRecommender:
         
 
 
+class BaselineRecommender(WhiskyRecommender):
+    """
+    Baseline Recommender class
+    Inherits from whisky recommender, and has access to same databases
+    etc, however instead of using NLP to find recommendations, gets a
+    random set of N_REC recommendations and returns them in same format
 
+    To be used as a baseline for comparing results.
+    """
+
+    def __init__(self):
+        WhiskyRecommender.__init__(self)
+
+    def recommend(self, user_input: RecommenderInput) -> list[WhiskyDict]:
+        """
+        Ranomd recommender - gets ids which satisfy requirements (eg 
+        price range etc) and then randomly selects N_REC
+        """
+        _, ids = self.getPossibleIDs(user_input["params"])
+        if len(ids) > N_REC:
+            rec_ids = random.sample(ids, N_REC)
+        else:
+            rec_ids = ids
+
+        recs = [self.getWhiskyByID(w_id) for w_id in rec_ids]
+        return recs
 
 
 if __name__ == "__main__":
     from pprint import pprint
     recommender = WhiskyRecommender()
-    # whisky_ids = ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5", "e1c6b00e52392df9bbe1ec8227ac8d9b298271b28aad6c4e980c47ff213589dc"]
-    # for whisky_id in whisky_ids:
-    #     whisky_dict = recommender.getWhiskyByID(whisky_id)
-    #     pprint(whisky_dict, sort_dicts=False)
-    #     print()
-
-    user_profile = {
-        "preferences" : {
-            "general" : {
-                "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
-                "dislikes" : []
-            },
-            "nose" : {
-                "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
-                "dislikes" : []
-            },
-            "palate" : {
-                "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
-                "dislikes" : []
-            },
-            "finish" : {
-                "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
-                "dislikes" : []
-            }
-        },
-        "params" : {
-            "Price" : [0, 300]
-        }
-    }
-
-
-    whiskys = recommender.recommend(user_profile)
-    
-    for whisky in whiskys:
-        pprint(whisky, sort_dicts=False)
-        print()
+    dd ={
+    "preferences" : {
+        "Nose" : "Smoke spicey sherry finish",
+        "Palate" : "Honeyed heavy vanilla, very creamy",
+        "Finish" : "Long spicy peppery"
+    },
+    "params" : {}
+}
+    ddrams = recommender.recommendDD(dd)
+    pprint(ddrams, sort_dicts=False)
+        

@@ -59,7 +59,7 @@ class WhiskyLemmatizer(WordNetLemmatizer):
             return "n"
         
     def tokenFilter(self, corpus):
-        tokens = word_tokenize(corpus)
+        tokens = word_tokenize(corpus.lower())
         filtered = [w for w in self.lemmatizeList(tokens) if 
                                         (not w in self.swords)]
         return filtered
