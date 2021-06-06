@@ -6,6 +6,7 @@ import numpy as np
 import json
 import sqlite3
 from pandas.io.sql import table_exists
+from requests import models
 
 from requests.models import parse_header_links
 from whiskynlp.GraphKeywordExtraction import GraphKE
@@ -93,6 +94,52 @@ class WhiskyRecommender:
     def __repr__(self):
         return "<WhiskyRecommender>"
     
+    ################################
+    ### General useful functions ###
+    ################################
+
+    def dbcon(self) -> sqlite3.Connection:
+        return sqlite3.connect(self.dbpath)
+
+    def dfToSQL(self, df : pd.DataFrame, name : str, exists="replace"):
+        """
+        Function to add a table to the database, by default replacing 
+        the existing table.
+        """
+        print(f"Adding table {name} to database.")
+        con = self.dbcon()
+        df.to_sql(name, con, index=False, if_exists=exists)
+        con.close()
+
+    def whiskyRow2Dict(self, whisky : list) -> WhiskyDict:
+        whisky_dict = {
+            "ID": whisky[0],
+            "Type": whisky[1],
+            "Name": whisky[2],
+            "Description": whisky[3],
+            "Tasting_Notes": {
+                "Nose": whisky[4],
+                "Palate": whisky[5],
+                "Finish": whisky[6]
+            },
+            "Price": whisky[7],
+            "Size": whisky[8],
+            "ABV": whisky[9],
+            "URL": whisky[10]
+        }
+        return whisky_dict
+
+    def stringToEmbedding(self, string : str, kws : list) -> pd.DataFrame:
+        """
+        Converts string to a dataframe based on a bag of words passed in.
+        """
+        lfv = self.lfv(kws)
+        df = lfv.fit([string])
+        return df
+
+    ################################
+    ######  Setup  functions  ######
+    ################################
     def checkInitialSetup(self):
         """
         Checks if signs of initial setup are present. If they aren't, 
@@ -126,19 +173,6 @@ class WhiskyRecommender:
             self.trainModels()
 
         print("Database files available. Agent initialising.")
-
-    def dbcon(self) -> sqlite3.Connection:
-        return sqlite3.connect(self.dbpath)
-
-    def dfToSQL(self, df : pd.DataFrame, name : str, exists="replace"):
-        """
-        Function to add a table to the database, by default replacing 
-        the existing table.
-        """
-        print(f"Adding table {name} to database.")
-        con = self.dbcon()
-        df.to_sql(name, con, index=False, if_exists=exists)
-        con.close()
 
     def setupReviewTable(self):
         """
@@ -175,7 +209,10 @@ class WhiskyRecommender:
         self.dfToSQL(df, "whiskys")
         self.setupReviewTable()
         self.trainModels()
-
+    
+    ################################
+    #####  Training  Functions  ####
+    ################################
     def trainModels(self):
         """
         Trains 4 models based on db data:
@@ -195,81 +232,14 @@ class WhiskyRecommender:
 
     def getTastingNotes(self):
         con = self.dbcon()
-        
         tasting_notes = pd.read_sql(
             "SELECT ID, Nose, Palate, Finish, Description FROM whiskys;",
             con
             )
         tasting_notes.fillna(value=np.nan)
-        
         con.close()
-
         return tasting_notes
 
-    def getAllReviews(self) -> list:
-        """
-        Get all reviews as a list of tuples
-        """
-        con = self.dbcon()
-        cur = con.cursor()
-        cur.execute(
-            """
-            SELECT ProdID, General, Nose, Palate, Finish FROM reviews;
-            """
-        )
-        reviews = cur.fetchall()
-        con.close()
-        return reviews
-
-    def allReviewsConcatDict(self) -> dict :
-        """
-        Gets all review notes as a concatenated dictionary
-        """
-        reviews = self.getAllReviews()
-        reviews_dict = {}
-        for review in reviews:
-            if review[0] in reviews_dict:
-                review_entry = reviews_dict[review[0]]
-                review_entry["general"] = review_entry["general"] \
-                                        + " " + review[1]
-                review_entry["nose"] = review_entry["nose"] \
-                                        + " " + review[2]
-                review_entry["palate"] = review_entry["palate"] \
-                                        + " " + review[3]
-                review_entry["finish"] = review_entry["finish"] \
-                                        + " " + review[4]
-                review_entry["n"] += 1
-            else:
-                reviews_dict[review[0]] = {
-                    "general": review[1],
-                    "nose": review[2],
-                    "palate": review[3],
-                    "finish": review[4],
-                    "n": 1
-                }
-        return reviews_dict
-
-    def allReviewsConcatDF(self) -> pd.DataFrame:
-        """
-        Returns concatenated reviews as dataframe
-        """
-        reviews = self.allReviewsConcatDict()
-        lsts = [
-                [
-                    k,
-                    reviews[k]['general'],
-                    reviews[k]['nose'],
-                    reviews[k]['palate'],
-                    reviews[k]['finish'],
-                    reviews[k]['n']
-                ]
-                for k in reviews
-            ]
-        revcols = ["ID","Rev.General", "Rev.Nose", "Rev.Palate", "Rev.Finish", 
-                                                                    "Rev.n"]
-        df = pd.DataFrame(lsts, columns=revcols)
-        return df
-    
     def performKWExtraction(self, tasting_notes : pd.DataFrame):
         # Perform KW Extraction
         print("\nPerforming Nose Keyword Extraction")
@@ -362,40 +332,73 @@ class WhiskyRecommender:
         self.dfToSQL(palate_model, "palate_model")
         self.dfToSQL(finish_model, "finish_model")
         self.dfToSQL(general_model, "general_model")
-
-    def whiskyRow2Dict(self, whisky : list) -> WhiskyDict:
-        whisky_dict = {
-            "ID": whisky[0],
-            "Type": whisky[1],
-            "Name": whisky[2],
-            "Description": whisky[3],
-            "Tasting_Notes": {
-                "Nose": whisky[4],
-                "Palate": whisky[5],
-                "Finish": whisky[6]
-            },
-            "Price": whisky[7],
-            "Size": whisky[8],
-            "ABV": whisky[9],
-            "URL": whisky[10]
-        }
-        return whisky_dict
-
-    def getWhiskyByID(self, ID : str) -> WhiskyDict:
+    
+    ################################
+    ## Training/Reviews Functions ##
+    ################################
+    def getAllReviews(self) -> list:
         """
-        Query database for whisky by ID.
-        Format in dictionary
+        Get all reviews as a list of tuples
         """
         con = self.dbcon()
         cur = con.cursor()
-        cur.execute("SELECT * FROM whiskys WHERE ID=:id", {"id":ID})
-        whisky = cur.fetchone()
+        cur.execute(
+            """
+            SELECT ProdID, General, Nose, Palate, Finish FROM reviews;
+            """
+        )
+        reviews = cur.fetchall()
         con.close()
-        try:
-            whisky = self.whiskyRow2Dict(whisky)
-        except TypeError:
-            whisky={}
-        return whisky
+        return reviews
+
+    def allReviewsConcatDict(self) -> dict :
+        """
+        Gets all review notes as a concatenated dictionary
+        """
+        reviews = self.getAllReviews()
+        reviews_dict = {}
+        for review in reviews:
+            if review[0] in reviews_dict:
+                review_entry = reviews_dict[review[0]]
+                review_entry["general"] = review_entry["general"] \
+                                        + " " + review[1]
+                review_entry["nose"] = review_entry["nose"] \
+                                        + " " + review[2]
+                review_entry["palate"] = review_entry["palate"] \
+                                        + " " + review[3]
+                review_entry["finish"] = review_entry["finish"] \
+                                        + " " + review[4]
+                review_entry["n"] += 1
+            else:
+                reviews_dict[review[0]] = {
+                    "general": review[1],
+                    "nose": review[2],
+                    "palate": review[3],
+                    "finish": review[4],
+                    "n": 1
+                }
+        return reviews_dict
+
+    def allReviewsConcatDF(self) -> pd.DataFrame:
+        """
+        Returns concatenated reviews as dataframe
+        """
+        reviews = self.allReviewsConcatDict()
+        lsts = [
+                [
+                    k,
+                    reviews[k]['general'],
+                    reviews[k]['nose'],
+                    reviews[k]['palate'],
+                    reviews[k]['finish'],
+                    reviews[k]['n']
+                ]
+                for k in reviews
+            ]
+        revcols = ["ID","Rev.General", "Rev.Nose", "Rev.Palate", "Rev.Finish", 
+                                                                    "Rev.n"]
+        df = pd.DataFrame(lsts, columns=revcols)
+        return df
 
     def review2DB(self, review : dict) -> None:
         """
@@ -436,19 +439,64 @@ class WhiskyRecommender:
         )
         con.commit()
         con.close()
+    
+    
+    ################################
+    ####  DB  Search  Functions ####
+    ################################
+    def getWhiskyByID(self, ID : str) -> WhiskyDict:
+        """
+        Query database for whisky by ID.
+        Format in dictionary
+        """
+        con = self.dbcon()
+        cur = con.cursor()
+        cur.execute(
+            """SELECT `ID`, `Type`, `Name`, `Description`, `Nose`, `Palate`, `Finish`, `Price`, `Size`, `ABV`, `URL` FROM whiskys WHERE ID=:id""", {"id":ID}
+        )
+        whisky = cur.fetchone()
+        con.close()
+        try:
+            whisky = self.whiskyRow2Dict(whisky)
+        except TypeError:
+            whisky={}
+        return whisky
+    
+    def searchWhiskys(self, term : str, col : str) -> list[WhiskyDict]:
+        con = self.dbcon()
+        cur = con.cursor()
+        cur.execute(
+            f"""SELECT   `ID`, `Type`, `Name`, `Description`, `Nose`, `Palate`,
+                        `Finish`, `Price`, `Size`, `ABV`, `URL` FROM `whiskys` 
+            WHERE {col}
+            LIKE :term ;""",
+        {
+            "term":'%'+term+'%'
+        }
+        )
 
-    def stringToEmbedding(self, string : str, kws : list) -> pd.DataFrame:
-        lfv = self.lfv(kws)
-        df = lfv.fit([string])
-        return df
+        ws = cur.fetchall()
+        con.close()
+        
+        try:
+            whiskys = [self.whiskyRow2Dict(w) for w in ws]
+        except TypeError:
+            whiskys = []
 
-    def getModelledWhisky(self, model_name : str, ID : str) -> np.ndarray:
-        model_table = f"{model_name}_model"
-        query = f"SELECT * FROM {model_table} WHERE ID = '{ID}';"
-        vec_df = pd.read_sql(query, self.alchemy)
-        vec_df = np.array(vec_df.drop(columns="ID"))
-        return vec_df
+        whiskys = [self.whiskyRow2Dict(w) for w in ws]
+        return whiskys
 
+    def searchByDesc(self, term : str) -> List[WhiskyDict]:
+        whiskys = self.searchWhiskys(term, "Description")
+        return whiskys
+    
+    def searchByName(self, term : str) -> list[WhiskyDict]:
+        whiskys = self.searchWhiskys(term, "Name")
+        return whiskys
+
+    ################################
+    # Recommendation Aux Functions #
+    ################################
     def vectorizePreferenceIDs(self, user_input : RecommenderPreferences, ids_lst : list) -> tuple[dict, set]:
         """
         Takes a set of preferences, and returns models, vectors 
@@ -457,8 +505,17 @@ class WhiskyRecommender:
         # Defining caching dictionaries        
         vecs = {}
         models = {}
-        ideal_vec_cache = {}
-        
+        ids = set()
+
+        # Getting model ids to a list - ensure they are pulled by the 
+        # one mega-query
+        # Previously querying each ID, but that was taking a very
+        # long time
+        for model in user_input:
+            for key in user_input[model]:
+                for iid in user_input[model][key]:
+                    if iid not in ids_lst:
+                        ids_lst.append(iid)
         # Adding ',s around ids in list
         ids_lst = ['\'' + w_id + '\'' for w_id in ids_lst]
 
@@ -470,7 +527,7 @@ class WhiskyRecommender:
             like_ids = user_input[model]["likes"]
             dislike_ids = user_input[model]["dislikes"]
             
-            # TODO FIX DIS!!!
+            # Get all vectors from model with IDs that we want
             sql_query = f"SELECT * FROM {model}_model WHERE ID in ({', '.join(ids_lst)});"
             table = pd.read_sql(sql_query,self.alchemy)
             
@@ -480,31 +537,23 @@ class WhiskyRecommender:
             vector = np.zeros_like(np.array(no_ID.loc[0,:]))
             
             for like_id in like_ids:
-                if like_id not in ideal_vec_cache:
-                    like_vec = self.getModelledWhisky(model, like_id)
-                    ideal_vec_cache[like_id] = like_vec
-                else:
-                    like_vec = ideal_vec_cache[like_id]
+                like_vec = np.array(no_ID[table["ID"] == like_id])
                 vector = vector + like_vec
+                ids.add(like_id)
             
             for dislike_id in dislike_ids:
-                if dislike_id not in ideal_vec_cache:
-                    dislike_vec = self.getModelledWhisky(model, dislike_id)
-                    ideal_vec_cache[dislike_id] = dislike_vec
-                else:
-                    dislike_vec = ideal_vec_cache[dislike_id]
-                vector = vector + like_vec
+                dislike_vec = np.array(no_ID[table["ID"] == dislike_id])
+                vector = vector + dislike_vec
+                ids.add(dislike_id)
                 
             # Normalise the ideal vector
             vecs[model] = normVec(vector)
             models[model] = table
             
-        
-
         # Removing entries from models for whiskies used to get recommendations
         for model in user_input:
             models[model] = models[model][[
-                w_id not in ideal_vec_cache.keys() for w_id in table.ID.values
+                w_id not in ids for w_id in models[model].ID.values
                 ]]
         
         
@@ -525,23 +574,6 @@ class WhiskyRecommender:
         simdat = pd.DataFrame(sims, columns=[name + "cossim"])
         simdat.index = df["ID"]
         return simdat
-
-    def dreamDramEmbedding(self, dream_dram : TastingNotes):
-        """
-        Takes dictionary of the following form:
-        {
-            "Nose": nose dream dram,
-            "Palate": dream palate,
-            "Finish": dream finish
-        }
-        """
-        # kws = self.loadKWs()
-        # embeddings = {
-        #     "Nose":self.stringToEmbedding
-        # }
-        # return embeddings
-        
-        pd.DataFrame()
 
     def getPossibleIDs(self, uinput : RecommenderInput) -> tuple[pd.DataFrame,list]:
         """
@@ -586,7 +618,7 @@ class WhiskyRecommender:
         ids
         return ids, list_ids
 
-    def recommendFromVectors(self, ideal_vectors : dict, models : dict) -> list[WhiskyDict]:
+    def recommendFromVectors(self, ideal_vectors : dict, models : dict, ids : pd.DataFrame) -> list[WhiskyDict]:
         # Getting cosine similarities
         sims = []
         for key in ideal_vectors:
@@ -600,7 +632,30 @@ class WhiskyRecommender:
         rec_ids = list(sorted_sim_id[:N_REC].index)
         recommendations = [self.getWhiskyByID(w_id) for w_id in rec_ids]
         return recommendations
+    
+    ################################
+    ### Dream Dram Aux Functions ###
+    ################################
+    def dreamDramEmbedding(self, dream_dram : TastingNotes):
+        """
+        Takes dictionary of the following form:
+        {
+            "Nose": nose dream dram,
+            "Palate": dream palate,
+            "Finish": dream finish
+        }
+        """
+        # kws = self.loadKWs()
+        # embeddings = {
+        #     "Nose":self.stringToEmbedding
+        # }
+        # return embeddings
         
+        pd.DataFrame()
+
+    #################################
+    # Recommendation Main Functions #
+    #################################
     def recommend(self, user_input : RecommenderInput) -> list[WhiskyDict]:
         """
         Main recommendation function
@@ -610,20 +665,29 @@ class WhiskyRecommender:
         # Extracting parameters and filtering possible whiskys
         
         ids, ids_lst = self.getPossibleIDs(user_input)
-
+        
         # Get set of ideal vectors - one for each relevant model
         ideal_vectors, models = self.vectorizePreferenceIDs(
                                         user_input["preferences"],
                                         ids_lst
                                     )
-        recommendations = self.recommendFromVectors(ideal_vectors, models)        
+        
+        recommendations = self.recommendFromVectors(ideal_vectors, models, ids)   
+        
         return recommendations
 
 
 
+# TODO 
+# - Incorporate Dream Dram recommender engine
+#         - Parse in dream dram, vectorise, and recommend from vectors
+# - Add reviews to models
+# - Incorporate update functions
+#         - Get updates from MoM,
+#         - Add updates from DB 
+#         - retrain on new models (potentially in new thread?)
+        
 
-        
-        
 
 
 
@@ -639,6 +703,10 @@ if __name__ == "__main__":
 
     user_profile = {
         "preferences" : {
+            "general" : {
+                "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
+                "dislikes" : []
+            },
             "nose" : {
                 "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
                 "dislikes" : []
@@ -646,14 +714,20 @@ if __name__ == "__main__":
             "palate" : {
                 "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
                 "dislikes" : []
+            },
+            "finish" : {
+                "likes" : ["ff6df63a99183d4515cbf7e36a84949c3b761a29cdf7bf13c137e5ce9a91abc5"],
+                "dislikes" : []
             }
         },
         "params" : {
-            "Price" : [0, 30]
+            "Price" : [0, 300]
         }
     }
 
+
     whiskys = recommender.recommend(user_profile)
+    
     for whisky in whiskys:
         pprint(whisky, sort_dicts=False)
         print()
