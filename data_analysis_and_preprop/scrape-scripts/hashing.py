@@ -16,4 +16,4 @@ def hashEl(name, url):
     h2 = md5(url.encode()).hexdigest()
     h3 = max(h1, h2) + min(h1, h2)
     h4 = md5(h3.encode()).hexdigest()
-    return h3
+    return h4

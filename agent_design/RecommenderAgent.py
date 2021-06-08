@@ -9,11 +9,15 @@ from pandas.io.sql import table_exists
 from requests import models
 import random
 from requests.models import parse_header_links
-from whiskynlp.GraphKeywordExtraction import GraphKE
-from whiskynlp.Vectorizer import ListFeatureVectorizer
-from whiskynlp.WhiskyLemmatizer import WhiskyLemmatizer
+from modules.whiskynlp.GraphKeywordExtraction import GraphKE
+from modules.whiskynlp.Vectorizer import ListFeatureVectorizer
+from modules.whiskynlp.WhiskyLemmatizer import WhiskyLemmatizer
 import os
-from scrapescripts.scrapescotch import scrapeScotch
+from modules.scraping.scrapescotch import scrapeScotch
+from modules.scraping.scraping import getUpdates
+from modules.types import *
+
+import threading
 
 # Constants:
 N_KW = 300
@@ -25,42 +29,7 @@ DEF_PARAMS = {
             "Size" : [50, 100]
         }
 
-# Defining types for hinting
-class TastingNotes(TypedDict, total=False):
-    Nose : str
-    Palate : str
-    Finish : str
-
-class WhiskyDict(TypedDict):
-    ID : str
-    Type : str
-    Name : str
-    Description : str
-    Tasting_Notes : TastingNotes
-    Price : float
-    Size : float
-    ABV : float
-    URL : str
-
-class RecommenderParams(TypedDict, total=False):
-    Abv : List[int]
-    Price : List[int]
-    Size : List [int]
-
-class CatPreferences(TypedDict, total=False):
-    likes : list[str]
-    dislikes : list[str]
-
-class RecommenderPreferences(TypedDict, total=False):
-    general : CatPreferences
-    nose : CatPreferences
-    palate : CatPreferences
-    finish : CatPreferences
-
-class RecommenderInput(TypedDict, total=False):
-    preferences : CatPreferences
-    params : RecommenderParams
-
+UPDATE_N = 3
 
 # Useful vector functions:
 def normVec(v):
@@ -81,6 +50,7 @@ class WhiskyRecommender:
         self.dbpath = os.path.join(self.moduledir, ".DB", "wdb.db")
         self.kwpath = os.path.join(self.moduledir, ".DB", "kws.json")
         self.alchemy = "sqlite:///"+self.dbpath
+        self.spath = os.path.join(self.moduledir, "scotch.csv")
 
         # Key external classes
         self.KE = GraphKE()
@@ -155,7 +125,7 @@ class WhiskyRecommender:
         # Check existence of sqlite db
         if not os.path.isfile(self.dbpath):
             print("No database on system.")
-            spath = os.path.join(self.moduledir, "scotch.csv")
+            spath = self.spath
             if os.path.isfile(spath):
                 self.makeInitDB(spath)
             else:
@@ -420,29 +390,42 @@ class WhiskyRecommender:
         cur.execute(
             """ 
             INSERT INTO reviews 
-                (
-                    ProdID,
-                    General,
-                    Nose,
-                    Palate,
-                    Finish
-                )
+                (ProdID, General,  Nose, Palate, Finish)
             VALUES
-                (
-                    :prod_id,
-                    :general,
-                    :nose,
-                    :palate,
-                    :finish
-
-                );
+                ( :prod_id, :general, :nose, :palate, :finish );
             """,
             review
         )
         con.commit()
         con.close()
     
-    
+    ################################
+    ####### Update Functions #######
+    ################################
+
+    def updateWhiskies(self):
+        """
+        Update whiskys from Master of Malt, add to database and retrain
+        model.
+        Applies following process:
+        - Get all IDs currently in database
+        - Scrape MoM new whisky pages, for each whisky check if ID in
+        database
+        - If in db, stop scraping
+        - Add each whisky to a new csv - merge with scotch
+        - Add each whisky to db
+        - Retrain model.
+        """
+        ids = self.getAllIDs()
+        update_df = getUpdates("updates", ids, UPDATE_N)
+        self.trainModels()
+        scotch = pd.read_csv(self.spath)
+        scotch.append(update_df)
+        scotch.to_csv(self.spath)
+        self.dfToSQL(update_df, "whiskys", exists='append')
+        self.trainModels()
+        return
+
     ################################
     ####  DB  Search  Functions ####
     ################################
@@ -536,6 +519,15 @@ class WhiskyRecommender:
         whiskys = self.searchWhiskys(term, "Name")
         return whiskys
 
+    def getAllIDs(self) -> list:
+        con = self.dbcon()
+        cur = con.cursor()
+        cur.execute("SELECT ID FROM whiskys")
+        ids = cur.fetchall()
+        con.close()
+        return [w_id[0] for w_id in ids]
+
+
     ################################
     # Recommendation Aux Functions #
     ################################
@@ -610,6 +602,7 @@ class WhiskyRecommender:
         scalar product between each row and the vector.  Would be more 
         computationally intensive to also normalise the output.
         """
+        
         M = np.array(df.drop(columns=["ID"]))
         sims = np.matmul(M, np.transpose(vec))
         simdat = pd.DataFrame(sims, columns=[name + "cossim"])
@@ -759,13 +752,8 @@ class WhiskyRecommender:
 
 
 # TODO 
-# - Incorporate Dream Dram recommender engine
-#         - Parse in dream dram, vectorise, and recommend from vectors
 # - Add reviews to models
-# - Incorporate update functions
-#         - Get updates from MoM,
-#         - Add updates from DB 
-#         - retrain on new models (potentially in new thread?)
+
         
 
 
@@ -801,16 +789,6 @@ class BaselineRecommender(WhiskyRecommender):
 
 
 if __name__ == "__main__":
-    from pprint import pprint
     recommender = WhiskyRecommender()
-    dd ={
-    "preferences" : {
-        "Nose" : "Smoke spicey sherry finish",
-        "Palate" : "Honeyed heavy vanilla, very creamy",
-        "Finish" : "Long spicy peppery"
-    },
-    "params" : {}
-}
-    ddrams = recommender.recommendDD(dd)
-    pprint(ddrams, sort_dicts=False)
+    print(recommender.updateWhiskies())
         
