@@ -1,4 +1,80 @@
 \section{Approach}\label{sec:approach}
-\subsection{General Philisophy}
-\subsection{The Data}
 \subsection{Requirements}
+The following broad requirements were set out for the agent:
+\begin{itemize}
+    \item \textbf{Backend} - The agent should be considered as part of
+    a backend of a web app\footnote{\textbf{Note:} The webapp was beyond the scope
+    of this project}. Relevant inputs and outputs should be in a python
+    dictionary/JSON format.
+    \item \textbf{Speed} - The agent should be able to produce a recommendation
+    within a couple of seconds.
+    \item \textbf{Customisable} - An end user should be able to filter by price,
+    volume and abv.
+    \item \textbf{Updateable} - The agent should be able to automatically update
+    it's database to include new whiskies, and retrain its language model.
+    \item \textbf{Input Types} - The agents should recommend based on \emph{likes} 
+    \& \emph{dislikes} of whiskies supplied by a user, or from a users written 
+    tasting notes.
+\end{itemize}
+
+\subsection{The Data}
+In order to build a whisky specific language model (discussed further in
+\autoref{whiskylang}), a large corpus of tasting notes was required. This could
+also fulfill the requirements of a dataset from which to make predictions.
+
+Product data for a large range of scotch whiskies was scraped from
+\href{http://masterofmalt.com/}{masterofmalt.com}\footnote{\href{
+http://masterofmalt.com/}{masterofmalt.com} is a major UK whisky 
+and spirits retailer.}, this dataset contains a selection of attributes for each 
+whisky.  It was observed that whiskies which are discontinued tend to be listed
+without a price, whereas those which are merely out of stock are listed with a
+price.  For this reason, and for the sake of simplicty, price was taken as an
+indication of whether a whisky is likely to be in stock.  Those without a price
+were still recorded in the dataset for two reasons; users may wish to make recommendations
+based on liking or disliking them, and they add to the corpus of tasting notes.
+
+\subsection{NLP Methods}\label{whiskylang}
+Word2vec and BoW were both considered as candidate langauge models. While there are
+many pretrained models available, these are likely to be unsuitable as breifly
+explained in \autoref{words}.
+
+Word2vec encapsulates a far greater amount of semantic data, however re-training
+word2vec regularly with new data would be expensive. As a quicker model to train
+BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure (which will
+be referred to as eRAKE) were considered for keyword extraction.
+
+\subsubsection{The Ideal Vector and Similarity}\label{sssec:cossim}
+The BoW model maps each input to a vector. To make recommendations, the agent must
+map the user input to a vector in the same space as the BoW model. This
+\emph{Ideal Vector} (IV) represents a hypothetical whisky which best represents 
+the user's input. Cosine similarity can then be used to ascertain which whiskies in 
+the database best match the input.  Cosine similarity indicates the angle between
+vectors \cite{Melville2010}. As for $\utilde{u}, \utilde{v}\in \mathbb{R} ^{k}$, 
+$\utilde{u} \cdot \utilde{v} \coloneqq \vert \utilde{u} \vert \vert \utilde{v} \vert \cos{\theta}$
+by storing all vectors normalised, this reduces such that the cosine similarity of
+$\utilde{u}$ \& $\utilde{v}$ is simply their scalar product.
+
+\begin{equation}\label{eqn:cossim}
+    \begin{pmatrix}
+        d_{11} & d_{12} & ... & d_{1n}\\
+        d_{21} & d_{22} & ... & d_{2n}\\
+        ...    & ...    & ^{\cdot}\cdot _{\cdot} & ...   \\
+        d_{m1} & d_{m2} & ... & d_{mn}
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        v_1 \\ v_2 \\ v_3 \\ ... \\ v_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        c_1 \\ c_2 \\ c_3 \\ ... \\ c_n
+    \end{pmatrix}
+\end{equation}
+
+Calculating cosine similarity for a large dataset is relatively straightforward,
+and this method was implemented in the agent. Consider our dataset of $m$ 
+whiskies as a matrix $\textbf{D} \in \mathbb{R}^{m \times n}$ with each row representing
+the corresponding whisky's vector, and our IV $\utilde{v} \in \mathbb{R}^{n}$.
+As demonstrated in equation~\ref{eqn:cossim}, the product of 
+$\textbf{D} \cdot \utilde{v} = \utilde{c}$ where $\utilde{c}$ is our vector 
+of cosine similarities.

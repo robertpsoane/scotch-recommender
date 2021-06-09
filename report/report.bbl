@@ -155,4 +155,12 @@ Q.~Liu, M.~J. Kusner, and P.~Blunsom, ``{A Survey on Contextual Embeddings},''
   2020. [Online]. Available: \url{http://arxiv.org/abs/2003.07278}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Melville2010}
+\BIBentryALTinterwordspacing
+P.~Melville and V.~Sindhwani, ``{Encyclopaedia of Machine Learning: Recommender
+  Systems},'' \emph{Encyclopaedia of Machine Learning}, pp. 829--838, 2010.
+  [Online]. Available:
+  \url{https://link.springer.com/content/pdf/10.1007/978-1-4899-7687-1_964.pdf%0Ahttps://link.springer.com/referenceworkentry/10.1007%2F978-0-387-30164-8_705%0Ahttps://link.springer.com/book/10.1007/978-0-387-30164-8%0A%0Ahttp://vikas.sindhwani.org/recommender.p}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

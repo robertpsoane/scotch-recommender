@@ -17,45 +17,45 @@ Warning--empty author in legislation.gov.uk_2009
 Warning--empty journal in Liu2020
 
 Done.
-You've used 23 entries,
+You've used 24 entries,
             4087 wiz_defined-function locations,
-            987 strings with 11585 characters,
-and the built_in function-call counts, 16824 in all, are:
-= -- 1404
-> -- 360
-< -- 156
-+ -- 197
-- -- 58
-* -- 825
-:= -- 2638
-add.period$ -- 46
-call.type$ -- 23
-change.case$ -- 22
-chr.to.int$ -- 345
-cite$ -- 25
-duplicate$ -- 1191
-empty$ -- 1273
-format.name$ -- 69
-if$ -- 3861
+            994 strings with 11996 characters,
+and the built_in function-call counts, 17676 in all, are:
+= -- 1479
+> -- 377
+< -- 165
++ -- 207
+- -- 60
+* -- 866
+:= -- 2769
+add.period$ -- 48
+call.type$ -- 24
+change.case$ -- 23
+chr.to.int$ -- 369
+cite$ -- 26
+duplicate$ -- 1247
+empty$ -- 1333
+format.name$ -- 72
+if$ -- 4058
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 199
-newline$ -- 110
-num.names$ -- 21
-pop$ -- 428
+int.to.str$ -- 24
+missing$ -- 206
+newline$ -- 115
+num.names$ -- 22
+pop$ -- 444
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1295
+skip$ -- 1361
 stack$ -- 0
-substring$ -- 810
-swap$ -- 995
-text.length$ -- 41
+substring$ -- 867
+swap$ -- 1044
+text.length$ -- 42
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 23
+type$ -- 24
 warning$ -- 2
-while$ -- 86
-width$ -- 25
-write$ -- 265
+while$ -- 91
+width$ -- 26
+write$ -- 277
 (There were 2 warnings)
