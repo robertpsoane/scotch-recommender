@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUN 2021 13:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUN 2021 16:04
 entering extended mode
 **"c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex"
 (c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex
@@ -674,26 +674,286 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 30.
 LaTeX Info: Redefining \pageref on input line 30.
 LaTeX Info: Redefining \nameref on input line 30.
+ (report.out) (report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
+Class scrartcl Info: loading recommended package `bookmark'.
+(scrartcl)           Using `bookmark' together with `hyperref' is recommended,
+(scrartcl)           because of handling of possible bookmark level gaps.
+(scrartcl)           You can avoid loading `bookmark' with KOMA-Script option
+(scrartcl)           `bookmarkpackage=false' before \begin{document} and
+(scrartcl)           you can avoid this message adding:
+(scrartcl)             \usepackage{bookmark}
+(scrartcl)           before \begin{document} on input line 30.
+ (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/bookmark\bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+ (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/bookmark\bkm-pdftex.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count304
+))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
+ (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
+ (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (report.toc)
+\tf@toc=\write4
+\openout4 = `report.toc'.
 
-c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex:30: I can't write on file `report.pdf'.
-Please type another file name for output
-c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex:30: Emergency stop.
-<to be read again> 
-                   \edef 
-l.30 \begin{document}
-                     
-*** (job aborted, file error in nonstop mode)
+ (sections/sec-intro.tex [1
 
- 
+
+{C:/Users/rober/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]) (sections/sec-scotch.tex) [2] (sections/sec-lit.tex [3] [4]) (sections/sec-approach.tex [5]
+Underfull \hbox (badness 1178) in paragraph at lines 109--109
+[]|\OT1/cmr/m/n/10.95 Laphroaig 10 Year
+ []
+
+
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 105--128
+ [][] 
+ []
+
+) (sections/sec-implementation.tex [6] [7]
+Overfull \hbox (8.38495pt too wide) in paragraph at lines 75--75
+[]|\OT1/cmr/m/n/10.95 Lemmatizer| 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
+[]|\OT1/cmr/m/n/10.95 Cluster Fea-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
+[]|\OT1/cmr/m/n/10.95 Cluster Fea-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+[]|\OT1/cmr/m/n/10.95 TF-
+ []
+
+
+Underfull \hbox (badness 3815) in paragraph at lines 110--110
+[]|\OT1/cmr/m/it/10.95 spice, vanilla,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+[]|\OT1/cmr/m/n/10.95 Highland Park,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+[]|\OT1/cmr/m/n/10.95 TF-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+[]|\OT1/cmr/m/it/10.95 fruit, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
+[]|\OT1/cmr/m/n/10.95 Highland Park,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+[]|\OT1/cmr/m/it/10.95 malt, honey,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
+[]|\OT1/cmr/m/it/10.95 fruit, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
+[]|\OT1/cmr/m/it/10.95 fruit, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+[]|\OT1/cmr/m/it/10.95 oak, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+[]|\OT1/cmr/m/it/10.95 oak, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
+[]|\OT1/cmr/m/it/10.95 smoke, peat,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
+[]|\OT1/cmr/m/it/10.95 smoke, peat,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+[]|\OT1/cmr/m/it/10.95 chocolate,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+[]|\OT1/cmr/m/it/10.95 sherry, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+[]|\OT1/cmr/m/n/10.95 GlenAllachie,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+\OT1/cmr/m/n/10.95 lour A'Bunadh,
+ []
+
+
+Overfull \hbox (8.0554pt too wide) in paragraph at lines 117--117
+[]|\OT1/cmr/m/n/10.95 RAKE| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\OT1/cmr/m/n/10.95 Pul-teney, Gle-nAl-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\OT1/cmr/m/n/10.95 Bow-more, Aber-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--117
+\OT1/cmr/m/n/10.95 lour A'Bunadh,
+ []
+
+
+Overfull \hbox (3.24606pt too wide) in paragraph at lines 117--117
+[]|\OT1/cmr/m/n/10.95 eRAKE| 
+ []
+
+
+Underfull \hbox (badness 7944) in paragraph at lines 117--117
+[]|\OT1/cmr/m/it/10.95 malt, vanilla,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+[]|\OT1/cmr/m/n/10.95 Highland Park,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\OT1/cmr/m/it/10.95 little, musty,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\OT1/cmr/m/it/10.95 sherry, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+[]|\OT1/cmr/m/n/10.95 GlenAllachie,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--119
+\OT1/cmr/m/n/10.95 lour A'Bunadh,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\OT1/cmr/m/it/10.95 little, like,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--120
+[]|\OT1/cmr/m/it/10.95 fruit, malt,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\OT1/cmr/m/it/10.95 smoke, peat,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--122
+[]|\OT1/cmr/m/it/10.95 oak, malt,
+ []
+
+[8] [9] [10] [11]) (sections/sec-evaluation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\OT1/cmr/m/n/10.95 Input
+ []
+
+[12]
+<graphics/all_recommendations.png, id=295, 578.16pt x 361.35pt>
+File: graphics/all_recommendations.png Graphic file (type png)
+<use graphics/all_recommendations.png>
+Package pdftex.def Info: graphics/all_recommendations.png  used on input line 45.
+(pdftex.def)             Requested size: 386.95897pt x 241.84961pt.
+<graphics/avg_recommendations.png, id=297, 433.62pt x 289.08pt>
+File: graphics/avg_recommendations.png Graphic file (type png)
+<use graphics/avg_recommendations.png>
+Package pdftex.def Info: graphics/avg_recommendations.png  used on input line 52.
+(pdftex.def)             Requested size: 386.95897pt x 257.98615pt.
+ [13 <./graphics/all_recommendations.png>]) (sections/sec-conc.tex [14 <./graphics/avg_recommendations.png>]) (report.bbl [15]
+Underfull \hbox (badness 10000) in paragraph at lines 192--197
+[]$\OT1/cmr/m/n/10.95 https : / / link . springer . com / content / pdf / 10 . 1007 / 978-[]1-[]4899-[]7687-[]1[]964 . pdf % 0Ahttps : / / link .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--197
+\OT1/cmr/m/n/10.95 springer . com / referenceworkentry / 10 . 1007 % 2F978-[]0-[]387-[]30164-[]8[]705 % 0Ahttps : / / link . springer .
+ []
+
+[16]
+Underfull \hbox (badness 1303) in paragraph at lines 242--246
+[]\OT1/cmr/m/n/10.95 P. Prakash, ``Key-word ex-trac-tion: Key-word ex-trac-tion in python,''
+ []
+
+) [17]
+
+LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
+(LaTeX3)     55.
+
+
+LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
+(LaTeX3)     55.
+
+
+LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
+(LaTeX3)     55.
+
+ (report.aux)
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+ ) 
 Here is how much of TeX's memory you used:
- 15800 strings out of 479173
- 266793 string characters out of 2864045
- 734724 words of memory out of 3000000
- 33224 multiletter control sequences out of 15000+600000
- 403730 words of font info for 28 fonts, out of 8000000 for 9000
+ 16578 strings out of 479173
+ 280983 string characters out of 2864045
+ 762497 words of memory out of 3000000
+ 33793 multiletter control sequences out of 15000+600000
+ 416925 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,1n,110p,10703b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
-c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/report/report.tex:30:  ==> Fatal error occurred, no output PDF file produced!
+ 108i,11n,110p,10703b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\rober\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (17 pages, 462477 bytes).
+PDF statistics:
+ 509 PDF objects out of 1000 (max. 8388607)
+ 126 named destinations out of 1000 (max. 500000)
+ 203 words of extra memory for PDF output out of 10000 (max. 10000000)
+

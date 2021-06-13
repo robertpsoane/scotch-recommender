@@ -16,8 +16,9 @@ import os
 from modules.scraping.scrapescotch import scrapeScotch
 from modules.scraping.scraping import getUpdates
 from modules.types import *
+import warnings
+warnings.filterwarnings('ignore')
 
-import threading
 
 # Constants:
 N_KW = 300
@@ -30,6 +31,8 @@ DEF_PARAMS = {
         }
 
 UPDATE_N = 3
+
+MOM_MIN_WEIGHTING = 50
 
 # Useful vector functions:
 def normVec(v):
@@ -199,8 +202,9 @@ class WhiskyRecommender:
         All three use Reviews data as well.
         """
         tasting_notes = self.getTastingNotes()
+        reviews = self.allReviewsConcatDF()
         self.performKWExtraction(tasting_notes)
-        self.vectorizeTastingNotes(tasting_notes)
+        self.vectorizeTastingNotes(tasting_notes, reviews)
 
     def getTastingNotes(self):
         con = self.dbcon()
@@ -287,17 +291,48 @@ class WhiskyRecommender:
         }
         return model_dict
 
-    def vectorizeTastingNotes(self, tasting_notes : pd.DataFrame):
+    def sumReviews(self, mom : pd.DataFrame, rev : pd.DataFrame, reviews : pd.DataFrame, name) -> pd.DataFrame:
+        """
+        sumReviews - sums reviews into MoM vectors, weighted in favour of MoM.
+        """
+        print(f"Summing reviews into Master of Malt model for {name}")
+        # Getting feature cols
+        cols = mom.drop(columns="ID").columns
+
+        # Setting ID as index
+        mom.index=mom.ID
+        rev.index = rev.ID
+
+        # Selecting number of reviews from reviews dataframe, and finding weighting factor
+        n = reviews[["n"]]
+        n["n"] = n["n"].apply(lambda n: min(1, n/MOM_MIN_WEIGHTING))
+        
+        # Adding weighted reviews to mom vectors, and re-normalising
+        rev[cols] = rev[cols].add(mom[cols]).dropna().apply(lambda row: normVec(row), axis=1)
+        
+        # Replacing relevant vectors with amalgamated ones which include reviews
+        mom.loc[rev.index] = rev
+        # Drop ID and reset index       
+        mom = mom.drop(columns="ID").reset_index()
+
+        return mom
+
+    def vectorizeTastingNotes(self, tasting_notes : pd.DataFrame, reviews : pd.DataFrame):
         print("\nVectorising tasting notes")
         kws = self.loadKWs()
 
         # Master of Malt models
+        print("MoM Tasting Notes")
         mom_model = self.vectorizeNotesMatrix(tasting_notes, kws)
-
-        nose_model = mom_model["nose"]
-        palate_model = mom_model["palate"]
-        finish_model = mom_model["finish"]
-        general_model = mom_model["general"]
+        print()
+        print("Reviews")
+        reviews_model = self.vectorizeNotesMatrix(reviews, kws)
+        print()
+        
+        nose_model = self.sumReviews(mom_model["nose"], reviews_model["nose"], reviews, "nose")
+        palate_model = self.sumReviews(mom_model["palate"], reviews_model["palate"], reviews, "palate")
+        finish_model = self.sumReviews(mom_model["finish"], reviews_model["finish"], reviews, "finish")
+        general_model =self.sumReviews(mom_model["general"], reviews_model["general"], reviews, "general")
 
         # Adding vector models to database
         self.dfToSQL(nose_model, "nose_model")
@@ -367,12 +402,11 @@ class WhiskyRecommender:
                 ]
                 for k in reviews
             ]
-        revcols = ["ID","Rev.General", "Rev.Nose", "Rev.Palate", "Rev.Finish", 
-                                                                    "Rev.n"]
+        revcols = ["ID","Description", "Nose", "Palate", "Finish", "n"]
         df = pd.DataFrame(lsts, columns=revcols)
         return df
 
-    def review2DB(self, review : dict) -> None:
+    def addReview(self, review : dict) -> None:
         """
         Takes review of the form
         {
@@ -384,7 +418,10 @@ class WhiskyRecommender:
         }
         and adds to database.
         """
-        
+        required_keys = ["general", "nose", "palate", "finish"]
+        for k in required_keys:
+            if k not in review:
+                review[k] = ""
         con = self.dbcon()
         cur = con.cursor()
         cur.execute(

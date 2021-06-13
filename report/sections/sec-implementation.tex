@@ -210,6 +210,15 @@ when converting a long list of data entries into a dataframe. To minimise this e
 as by price, ABV etc.) are used to select a get the set of all IDs for from which a recommendation can be made.
 Only the models for these whiskies are queried from the database.
 
+\subsection{User Reviews}
+The agent can take user reviews which can be incorporated when training. Acknowledging that expert notes may be better,
+only the tasting notes are used for KE. When including reviews, the IV is calculated by
+\begin{equation}\label{eqn:revweight}
+    \utilde{IV} = \vert \utilde{t} + \utilde{r} \cdot \min(\frac{n}{W}, 1) \vert 
+\end{equation}
+where $t$ and $r$ are the vectorised tasting notes and reviews, and $n$ and $W$ are the number of reviews and minimum weight 
+for the tasting notes.
+
 \subsubsection{Dream Dram}
 An interesting feature implemented is the \emph{Dream Dram} (DD) recommender.  This takes unstructured text describing
 a `dream' whisky and makes a recommendation on that basis. This works in much the same way as the other recommendations, 
