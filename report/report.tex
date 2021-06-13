@@ -3,13 +3,16 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{geometry} % Required for adjusting page dimensions
-\usepackage{booktabs}
+\usepackage{booktabs,caption}
+\usepackage{threeparttable}
 \usepackage{graphicx}
+\usepackage[ruled,vlined]{algorithm2e}
 \usepackage{caption}
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{undertilde}
 \usepackage{amsmath}
+\usepackage{array}
 
 \bibliographystyle{IEEEtran}
 \usepackage[hidelinks]{hyperref}
@@ -17,8 +20,9 @@
 
 \geometry{top=1cm,bottom=1.5cm,left=2cm,right=2cm,includehead,includefoot}
 
+\setcounter{tocdepth}{2}
 
-\title{An NLP-Based Scotch Whisky Recommender Engine}
+\title{An NLP-Based Scotch Whisky Recommender Agent}
 \subtitle{COMP3004 - Designing Intelligent Agents}
 \author{Robert Soane}
 \date{June 2021}
@@ -41,6 +45,9 @@
 \input{sections/sec-evaluation}
 
 \input{sections/sec-conc}
+
+\section{Statement on Ethics}\label{sec:StatementOnEthics}
+\emph{I have followed the guidance given in the module about research ethics in the user study in my coursework for this module.}
 
 \bibliography{references}
 

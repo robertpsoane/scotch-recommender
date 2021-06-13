@@ -1,25 +1,217 @@
 \section{Implementation}\label{sec:imp}
 
-The implementation was split into two broad phases, \emph{data exploration} and
-\emph{agent design}. These are discussed in sections \ref{ssec:phase1} \& 
-\ref{ssec:phase2} respectively.
+The implementation was split into the following two broad phases:
+\begin{itemize}
+    \item \textbf{Data exploration:} Exploring the dataset, and exploring potential prototypical methods in 
+    a Jupyter Notebook. Deciding on a chosen method to implement in the agent.
+    \item \textbf{Agent design:} Designing an agent in Python based on work from previous phase.
+\end{itemize}
+These are discussed in sections \ref{ssec:phase1} \& \ref{ssec:phase2} respectively.
 
 \subsection{Data Exploration}\label{ssec:phase1}
-\subsubsection{Whisky Words}\label{words}
+\subsubsection{Effective Lemmatizing}\label{words}
+Given the whisky specific lexicon, an interesting problem occurs when trying to use gerneral purpose lemmatizers.
+In whisky `peated' is a verb describing how the grain was processed, and thus the `peaty' (smokey) flavour has been 
+imparted on the finished spirit.  In English, peat refers to a natural fuel made from dead plant matter,
+and `peated' does not exist \cite{jenner_2019}. 
+For the purposes of the agent, `peated' and `peaty' should both reduce to `peat', however as they are not considered 
+as verbs in WordNet.  For this reason a separate custom whisky lemmatizer was built.
 
-\subsubsection{Model Building}
+This \emph{WhiskyLemmatizer} was built on top of scikit-learn's WordNet lemmatizer \cite{Barupal2011}. By manually
+creating a dictionary of whisky words and their desired root form, for any input the lemmatizer can first check the
+dictionary. If the word is not in the dictionary, it can then use the WordNet lemmatizer.
+The WordNet lemmatizer can be slow as it doesn't cache results and re-queries them from the WordNet corpus
+each time.  For this reason, every result from WordNet is added to the dictionary. 
+
+After experimentation with this WhiskyLemmatizer, words in the cache which are mapped to words which further reduce 
+to smaller words were automatically updated to map to the leaf word. A set of stopwords was manually produced in an 
+iterative process based on the lemmatizers outputs.
+
+\subsubsection{Comparing KE Strategies}\label{sssec:kwecomp}
+As it is possible that over time the tasting note lexicon may change, the agent should perform KE with each training 
+cycle. KE takes a significant proportion of time for model building. For this reason time and accuracy are of equal
+importance.  It is little use performing KE perfectly if it takes an age.
+
+An adapted implementation of TF-IDF \cite{tf_idf_imp} the \emph{rake-nltk} python package \cite{sharmer_2018}, and a
+new implementation eRAKE were applied to the dataset with a range of lemmatizers to extract the top 300 keywords.
+The methods were timed, and the top 20 keywords recorded. 
+These can be found in tables \ref{tab:times} and \ref{tab:top20}.
+
+\begin{table}
+    \centering
+    \begin{threeparttable}
+
+        \caption{Times of TF-IDF, RAKE and eRAKE with various lemmatizers in seconds.}\label{tab:times}
+        \begin{tabular}{llll} 
+        \toprule
+                           & TF-IDF        & RAKE           & eRAKE           \\
+        Unlemmatized       & \textit{1247} & \textit{0.441} & \textit{-}      \\
+        WordNet Lemmatized & \textit{1461} & \textit{130.2} & \textit{-}      \\
+        WhiskyLemmatizer   & \textit{1209} & \textit{4.947} & \textit{47.6}  \\
+        \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \small
+            \item \textbf{Note:} eRAKE was only applied to the WhiskyLemmatized corpus
+            as the eRake implementation included the WhiskyLemmatizer.
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+As is clear, the TF-IDF KE took orders of magnitude longer than RAKE and eRAKE.  
+Qualitatively evaluating the keywords extracted by RAKE vs eRAKE, eRAKE produces more useful keywords.
+This is perhaps unsurprising, as RAKE aims to find keywords from a corpus with both a relatively high frequency
+of each keyword, and a higher frequency of stopwords.  By using it on the corpus of tasting notes it is perhaps 
+being misused. As highlighted in \autoref{ssec:tnotes}, tasting notes are very feature dense, however different
+tasting notes have different features charactersing them.  It is likely that the most frequent features are
+penalised due to stopword potential. It is interesting to see that WordNet lemmatizing had little impact 
+in terms of which words were extracted.
+
+\begin{table}[h!]
+    \centering
+    \caption{Top 20 keywords from each of TF-IDF, RAKE and eRAKE with various lemmatizers.}\label{tab:top20}
+    \begin{tabular}{p{0.15\linewidth} p{0.1\linewidth} p{0.6\linewidth}} 
+    \toprule
+    Keyword \\Extraction & Lemmatizer & Keywords                                                                                                                                                       \\
+    \midrule
+                 & None       & \textit{vanilla, quite, juicy, jam, zest, liquorice, crème, waxy, mixed, oak, zesty, smoke, marzipan, drizzle, hazelnut, beeswax, joined, juice, brûlée, box}  \\
+    TF-IDF             & Wordnet    & \textit{vanilla, quite, juicy, jam, zest, liquorice, crème, waxy, mixed, oak, zesty, smoke, marzipan, drizzle, hazelnut, beeswax, joined, juice, brûlée, box}  \\
+                 & Whisky     & \textit{vanilla, zest, jam, quite, juicy, sweet, fruit, waxy, liquorice, crème, smoke, develop, oak, mixed, drizzle, hazelnut, marzipan, join, dry, beeswax}   \\
+    \midrule
+                   & None       & \textit{with, winesky, while, touch, torten, time, theres, saucepan, salty, pan, or, nose, musty, muscular, more, marketplace, little, like, just, its}        \\
+    RAKE               & Wordnet    & \textit{with, winesky, while, touch, torten, time, theres, saucepan, salty, pan, or, nose, musty, muscular, more, marketplace, little, like, just, its}        \\
+                   & Whisky     & -                                                                                                                                                              \\
+    \midrule
+    eRAKE              & Whisky     & \textit{fruit, sweet, spice, oak, vanilla, smoke, honey, malt, chocolate, apple, dry, pepper, orange, cream, butter, fresh, nut, peel, rich, barley}           \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 \subsubsection{Clustering}
 
-\subsection{Agent Design}\label{ssec:phase2}
+\begin{table}
+    \centering
+    \caption{Whiskies considered in clustering evaluation.} \label{tab:clustwhisk}
+    \begin{tabular}{p{0.9\linewidth}} 
+    \toprule
+    Highland Park 12 Year Old, Bowmore 15 Year Old, Arran 10 Year Old, Edradour 10 Year Old, Old Pulteney 12 Year OId, Laphroaig 10 Year Old, Ardbeg 10 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Talisker 10 Year Old, GlenAllachie 15 Year Old, Aberlour A'Bunadh Batch 68  \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
-\subsubsection{Web Scraping}
+\begin{threeparttable}
+    \centering
+    \raggedright
+    \caption{Clustering of whiskies from each BoW model.}\label{tab:clusters}
+    \begin{tabular}{p{0.05\linewidth} p{0.15\linewidth} p{0.2\linewidth}|p{0.07\linewidth} p{0.15\linewidth} p{0.2\linewidth}} 
+    \toprule
+    KE     & Cluster Features                 & \multicolumn{1}{l}{Whiskies}                                                                                    & KE      & Cluster Features              & Whiskies                                                \\
+    \midrule
+    TF-IDF & \textit{spice, vanilla, sweet}   & Highland Park, Bowmore                                                                                          & TF-IDF* & \textit{fruit, malt, spice}   & Highland Park, Bowmore                                  \\
+         & \textit{malt, honey, sweet}      & Arran                                                                                                           &  & \textit{malt, fruit, oak}     & Arran                                                   \\
+         & \textit{fruit, malt, spice}      & Edradour                                                                                                        &  & \textit{fruit, malt, spice}   & -                                                       \\
+         & \textit{oak, malt, vanilla}      & Old Pulteney                                                                                                    &  & \textit{oak, malt, vanilla}   & Old Pulteney                                            \\
+         & \textit{smoke, peat, malt}       & Laphroaig, Ardbeg, Blair Athol, Talisker                                                                        &  & \textit{smoke, peat, malt}    & Laphroaig, Ardbeg, Talisker                             \\
+         & \textit{chocolate, malt, sherry} & GlenAllachie, Aberlour A'Bunadh                                                                                 &  & \textit{sherry, malt, fruit}  & GlenAllachie, Blair Athol, Aberlour A'Bunadh, Edradour  \\
+    \midrule
+    RAKE   & \textit{musty, muscular, fire}   & Laphroaig, Ardbeg, Highland Park, Old Pulteney, GlenAllachie, Blair Athol, Bowmore, Aberlour A'Bunadh, Edradour & eRAKE   & \textit{malt, vanilla, sweet} & Highland Park, Bowmore                                  \\
+           & \textit{little, musty, fire}     & -                                                                                                               &    & \textit{sherry, malt, fruit}  & GlenAllachie, Blair Athol, Aberlour A'Bunadh, Edradour  \\
+           & \textit{little, like, musty}     & -                                                                                                               &    & \textit{malt, fruit, oak}     & Arran                                                   \\
+           & \textit{time, like, fire}        & Talisker                                                                                                        &    & \textit{fruit, malt, spice}   & -                                                       \\
+           & \textit{like, muscular, musty}   & Arran                                                                                                           &    & \textit{smoke, peat, vanilla} & Laphroaig, Ardbeg, Talisker                             \\
+           & \textit{little, time, like}      & -                                                                                                               &    & \textit{oak, malt, vanilla}   & Old Pulteney                                            \\
+    \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+        \small
+        \item TF-IDF and RAKE refer to these extractions applied both WordNet and unlemmatized. They produced the same results. TF-IDF* is TF-IDF used with WhiskyLemmatizer
+        \item Cluster Features refers to the three most prominent features at the centers of the cluster.
+    \end{tablenotes}
+\end{threeparttable}
+
+For the purposes of sanity checking, and ensuring sufficient information is retained in each BoW model, k-means
+k-means clustering was applied on a BoW model based on each set of keywords. The clusters of the whiskies in 
+\autoref{tab:clustwhisk} were considered\footnote{I chose these whiskies as I have enough basic knowledge of 
+them to qualitatively approximately evaluate the sensibleness of the clustering and help make a decision. This 
+is hardly a rigorous approach, and future work would need a more rigorous evaluation at this stage.  This faster
+approach was used due to time constraints.} and the corresponding clusters are shown in \autoref{tab:clusters}.
+
+There is little difference between TF-IDF and TF-IDF*, apart from Edradour being clustered with GlenAllachie and Aberlour 
+(two heavily sherried expressions) in TF-IDF*, and Blair Athol.  Blair Athol is a relatively sherried expression,
+and thus appearing in a very smoke and peat heavy cluster (Laphroaig, Ardbeg, Talisker) seems strange. It's placement in 
+TF-IDF* seems far more sensible.
+
+When considering the tasting notes, Blair Athol is described as 
+\emph{``Nutty with sherried notes. Gentle peat. Crisp. ... Peat smoke, syrup ...''} \cite{mom_ba}.  This highlights a limitation
+of the BoW model - and it's applications to this problem. by mentioning peat and smoke three times, Blair Athol was grouped
+with similar peat and smoke heavy whiskys.
+
+The RAKE clusters are clearly nonsense, however this isn't surprising when considering the main features. The eRAKE clusters
+are very similar to those in TF-IDF*.  On the basis of this, and the data in subsubsection~\ref{sssec:kwecomp}, eRAKE was chosen to move forward with.
+
+\subsection{Agent Design}\label{ssec:phase2}
+The agent was designed as a single Python class, with a few helper classes and functions.  All key features
+of the agent can be accessed through a small subset of methods. While the agent isn't directly useable by a user,
+all inputs and outputs use Python dictionaries.  While this may seem strange as the methods give less information
+regarding their expected input/output, this is with the view that a web frontend could be designed to send
+data in JSON formats.
+
+\subsubsection{The Database}\label{sssec:db}
+An SQLite database is used to store all whisky data and models.  This is implemented directly in Python and
+allows multiple agents to access the data at the same time.  This also allows one agent to update the models
+and all other agents can use the up to date model.  It was observed that SQLite appears to run faster than Pandas,
+however Pandas\footnote{A python package for manipulating data tables \cite{reback2020pandas}} is still used 
+for some data manipulations once data is loaded from the database.
+
+When loaded the agent checks if there's a $.DB$ directory, and if there isn't it creates it.  Using the pre-existing
+\emph{scotch.csv} file a database is created with a table for each product, model and review.
+
+\subsubsection{Web Scraping}\label{sssec:scrape}
+The initial dataset was collected using a roughly hacked together script using Python and Beautiful 
+Soup~\cite{richardson2007beautiful}. The agent was designed using this dataset of approximately 14,000
+whiskies.  As per the requirements, and to ensure the agent's autonomy, a method was written to fetch new
+whiskies. While it is not recommended that it is used, if the initial dataset is not present in the agents
+root folder, it will automatically fetch all data from Master of Malt before creating the database.
+
+Master of Malt list new whiskies on a page of their website.  This page is parsed and each listing
+is checked to confirm it is Scotch.  When each ID is created, it is checked against those already in the
+database.  If three consecutive listings are already in the database, the agent stops assuming all new products
+have been included. The reason for this is sometimes one or two re-stocked whiskies are listed in successsion.
+Setting three as the threshold reduces the risk of stopping prematurely.
+
+While this function could be setup to run periodically, this hasn't been implemented to avoid unneccessarily 
+hammering the Master of Malt server.
 
 \subsubsection{Model Training}
+The eRAKE method is used to lemmatize all tasting notes, and extract 300 keywords for each model.  These are 
+then vectorised and the dataset is transformed to a matrix $\textbf{M} \in \mathbb{R}^{m \times n}$, with $m$ 
+whiskies, $n$ keywords, and each row normalised. Each $\textbf{M}$ is stored with each whiskies corresponding ID 
+in a table. Four models are created, described in \autoref{tab:models}.
 
-\subsubsection{Recommendations}
+\begin{table}
+    \centering
+    \caption{Description of models created for agent.}\label{tab:models}
+    \begin{tabular}{p{0.1\linewidth} p{0.7\linewidth}} 
+    \toprule
+    Model   & Description            \\ \midrule
+    Nose    & Model based purely on keywords extracted from \emph{nose} tasting notes  \\
+    Palate  & Model based purely on keywords extracted from \emph{palate} tasting notes  \\
+    Finish  & Model based purely on keywords extracted from \emph{finish} tasting notes  \\
+    General & Model based on keywords extracted from all tasting notes.  Vectorising description as well as tasting notes for each whisky. This reflects some whiskies being listed without tasting notes, but taste indications in main description. \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
-\subsubsection{Speed}
+\subsubsection{Producing Recommendations}
+As discussed in section \ref{sssec:cossim}, cosine similarity and matrix algebra is used to produce recommendations.
+Where recommendations are made based on more than one model, the mean of the cosine similarities is used.
+A problem encountered with Pandas was that it can be quite slow due to it's single-threaded nature, especially
+when converting a long list of data entries into a dataframe. To minimise this effect, the users filtering input (such
+as by price, ABV etc.) are used to select a get the set of all IDs for from which a recommendation can be made.
+Only the models for these whiskies are queried from the database.
 
 \subsubsection{Dream Dram}
-
+An interesting feature implemented is the \emph{Dream Dram} (DD) recommender.  This takes unstructured text describing
+a `dream' whisky and makes a recommendation on that basis. This works in much the same way as the other recommendations, 
+however the IV is generated on the basis of the text input instead of by querying for specific whiskies. This option 
+could potentially be incorporated into a Whisky chat bot at a later date.

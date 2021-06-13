@@ -1,117 +1,124 @@
 Considering n = 300, key = tf_idf
-Time = 1148.445481300354
+Time = 1247.229135274887
 
 Top KWS:
 vanilla, quite, juicy, jam, zest, liquorice, crème, waxy, mixed, oak, zesty, smoke, marzipan, drizzle, hazelnut, beeswax, joined, juice, brûlée, boxClusters:
 0: spice, vanilla, sweet;
- 1: malt, honey, barley;
- 2: oak, malt, vanilla;
- 3: fruit, malt, spice;
+ 1: malt, honey, sweet;
+ 2: fruit, malt, spice;
+ 3: oak, malt, vanilla;
  4: smoke, peat, malt;
  5: chocolate, malt, sherry
 Clustered Whsikies:
 0: Highland Park 12 Year Old - Viking Honour, Bowmore 15 Year Old;
  1: Arran 10 Year Old;
- 2: Old Pulteney 12 Year Old;
- 3: Edradour 10 Year Old;
+ 2: Edradour 10 Year Old;
+ 3: Old Pulteney 12 Year Old;
  4: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Talisker 10 Year Old;
  5: GlenAllachie 15 Year Old, Aberlour A'Bunadh Batch 68
 
 
 
 Considering n = 300, key = wordnet_tf_idf
-Time = 1330.9155395030975
+Time = 1460.5779964923859
 
 Top KWS:
 vanilla, quite, juicy, jam, zest, liquorice, crème, waxy, mixed, oak, zesty, smoke, marzipan, drizzle, hazelnut, beeswax, joined, juice, brûlée, boxClusters:
-0: oak, malt, vanilla;
- 1: chocolate, malt, fruit;
- 2: fruit, malt, spice;
- 3: spice, vanilla, sweet;
- 4: malt, honey, sweet;
- 5: smoke, peat, malt
+0: spice, vanilla, sweet;
+ 1: smoke, peat, malt;
+ 2: malt, honey, barley;
+ 3: chocolate, malt, fruit;
+ 4: fruit, malt, spice;
+ 5: oak, malt, vanilla
 Clustered Whsikies:
-0: Old Pulteney 12 Year Old;
- 1: GlenAllachie 15 Year Old, Aberlour A'Bunadh Batch 68;
- 2: Edradour 10 Year Old;
- 3: Highland Park 12 Year Old - Viking Honour, Bowmore 15 Year Old;
- 4: Arran 10 Year Old;
- 5: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Talisker 10 Year Old
+0: Highland Park 12 Year Old - Viking Honour, Bowmore 15 Year Old;
+ 1: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Talisker 10 Year Old;
+ 2: Arran 10 Year Old;
+ 3: GlenAllachie 15 Year Old, Aberlour A'Bunadh Batch 68;
+ 4: Edradour 10 Year Old;
+ 5: Old Pulteney 12 Year Old
 
 
 
 Considering n = 300, key = whisky_tf_idf
-Time = 1170.601351737976
+Time = 1208.8524370193481
 
 Top KWS:
 vanilla, zest, jam, quite, juicy, sweet, fruit, waxy, liquorice, crème, smoke, develop, oak, mixed, drizzle, hazelnut, marzipan, join, dry, beeswaxClusters:
-0: sherry, malt, fruit;
- 1: malt, fruit, oak;
- 2: oak, malt, vanilla;
+0: fruit, malt, spice;
+ 1: oak, malt, vanilla;
+ 2: sherry, malt, fruit;
  3: smoke, peat, malt;
- 4: fruit, malt, spice;
+ 4: malt, fruit, oak;
  5: malt, vanilla, sweet
 Clustered Whsikies:
-0: GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
- 1: Arran 10 Year Old;
- 2: Old Pulteney 12 Year Old;
+1: Old Pulteney 12 Year Old;
+ 2: GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
  3: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Talisker 10 Year Old;
+ 4: Arran 10 Year Old;
  5: Highland Park 12 Year Old - Viking Honour, Bowmore 15 Year Old
 
 
 
 Considering n = 300, key = unlemma_rake
-Time = 0.44502973556518555
+Time = 0.44065117835998535
 
 Top KWS:
-woody spice, wonderful intense, winter morning, vegetal backdrop, vanillaforward dram, vanilla hum, underlying nuttiness, timewarp to, this is, there is, the competition, tannic mouthfeel, sugary underlay, subtle salinity, subtle grassiness, soupcon nay, soft spiciness, soft oakiness, shift to, sea breezeClusters:
-0: time, like, fire;
- 1: musty, muscular, fire;
- 2: little, musty, fire;
- 3: like, muscular, musty;
- 4: little, time, like;
- 5: little, like, musty
+with, winesky, while, touch, torten, time, theres, saucepan, salty, pan, or, nose, musty, muscular, more, marketplace, little, like, just, itsClusters:
+0: musty, muscular, fire;
+ 1: little, musty, fire;
+ 2: little, like, musty;
+ 3: time, like, fire;
+ 4: like, muscular, musty;
+ 5: little, time, like
 Clustered Whsikies:
-0: Talisker 10 Year Old;
- 1: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Highland Park 12 Year Old - Viking Honour, Old Pulteney 12 Year Old, GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Bowmore 15 Year Old, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
- 3: Arran 10 Year Old
+0: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Highland Park 12 Year Old - Viking Honour, Old Pulteney 12 Year Old, GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Bowmore 15 Year Old, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
+ 3: Talisker 10 Year Old;
+ 4: Arran 10 Year Old
 
 
 
 Considering n = 300, key = wordnet_rake
-Time = 126.43705701828003
+Time = 130.22103071212769
 
 Top KWS:
-woody spice, wonderful intense, winter morning, vegetal backdrop, vanillaforward dram, vanilla hum, underlying nuttiness, timewarp to, this is, there is, the competition, tannic mouthfeel, sugary underlay, subtle salinity, subtle grassiness, soupcon nay, soft spiciness, soft oakiness, shift to, sea breezeClusters:
-0: time, like, fire;
- 1: musty, muscular, fire;
- 2: little, musty, fire;
+with, winesky, while, touch, torten, time, theres, saucepan, salty, pan, or, nose, musty, muscular, more, marketplace, little, like, just, itsClusters:
+0: musty, muscular, fire;
+ 1: little, musty, fire;
+ 2: time, like, fire;
  3: like, muscular, musty;
- 4: little, time, like;
- 5: little, like, musty
+ 4: little, like, time;
+ 5: time, little, like
 Clustered Whsikies:
-0: Talisker 10 Year Old;
- 1: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Highland Park 12 Year Old - Viking Honour, Old Pulteney 12 Year Old, GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Bowmore 15 Year Old, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
+0: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Highland Park 12 Year Old - Viking Honour, Old Pulteney 12 Year Old, GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Bowmore 15 Year Old, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
+ 2: Talisker 10 Year Old;
  3: Arran 10 Year Old
 
 
 
+Considering n = 300, key = whisky_rake
+Time = 4.937030553817749
+
+Top KWS:
+No Keywords...
+
+
 Considering n = 300, key = erake
-Time = 48.51305794715881
+Time = 47.58850359916687
 
 Top KWS:
 fruit, sweet, spice, oak, vanilla, smoke, honey, malt, chocolate, apple, dry, pepper, orange, cream, butter, fresh, nut, peel, rich, barleyClusters:
-0: smoke, peat, malt;
- 1: malt, vanilla, sweet;
+0: malt, vanilla, sweet;
+ 1: sherry, malt, fruit;
  2: malt, fruit, oak;
  3: fruit, malt, spice;
- 4: sherry, malt, fruit;
+ 4: smoke, peat, malt;
  5: oak, malt, vanilla
 Clustered Whsikies:
-0: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Talisker 10 Year Old;
- 1: Highland Park 12 Year Old - Viking Honour, Bowmore 15 Year Old;
+0: Highland Park 12 Year Old - Viking Honour, Bowmore 15 Year Old;
+ 1: GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
  2: Arran 10 Year Old;
- 4: GlenAllachie 15 Year Old, Blair Athol 12 Year Old - Flora and Fauna, Aberlour A'Bunadh Batch 68, Edradour 10 Year Old;
+ 4: Laphroaig 10 Year Old, Ardbeg 10 Year Old, Talisker 10 Year Old;
  5: Old Pulteney 12 Year Old
 
 

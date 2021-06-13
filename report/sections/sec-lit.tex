@@ -33,8 +33,8 @@ Natural Language Tool Kit (NLTK), which queries the WordNet corpus to find the r
 \cite{StevenBirdEwanKlein2009, princetonuniversity_2010}. 
  
 \subsubsection{Keyword Extraction}\label{sssec:kwe}
-For syntactic methods, keyword extraction is key.  For the purposes of this report, a keyword is a word of particular
-relevance or importance, and from which we might extract useful information.  Keyword extraction refers to strategies
+For syntactic methods, keyword extraction (KE) is key.  For the purposes of this report, a keyword is a word of particular
+relevance or importance, and from which we might extract useful information.  KE refers to strategies
 based on which those important words can be ranked, and only the most relevant kept.
 
 \paragraph{TF-IDF}\label{ssec:tfidf}
@@ -46,9 +46,9 @@ how frequently it occurs in a document, and how frequently it occurs in the data
 Scoring as such aims to penalise words that occur too frequently across a document, boosting the scores of words in an 
 individual document for which they with disproportionately high frequency.
 
-\paragraph{Graph based keyword extraction}\label{sssec:gbkwe}
+\paragraph{Graph based KE}\label{sssec:gbkwe}
 
-Another approach for keyword extraction is the use of graph-based ranking methods.  These methods model words as
+Another approach for KE is the use of graph-based ranking methods.  These methods model words as
 nodes on a mathematical network graph\footnote{A graph $G$ being a set of nodes $V$ and edges $E$.  For a brief 
 summary see Rashid Bin Muhammad's site http://personal.kent.edu/~rmuhamma/GraphTheory/MyGraphTheory/defEx.htm
 \cite{muhammad}.}.  A popular example is the \emph{Rapid Automatic Keyword Extraction} (RAKE) algorithm, which
@@ -57,7 +57,7 @@ splits finds a set of candidate keywords, and models them as a co-occurence grap
 Each node represents a candidate, each edge co-occurence, and it's weight the number of co-occurences.  The 
 candidates are then ranked according to frequency and degree (sum of weights)~\cite{Rose2010}.
 
-Beliga et al., survey a wide range of graph based keyword extraction techniques, many of which rely on different 
+Beliga et al., survey a wide range of graph based KE techniques, many of which rely on different 
 centrality measures \cite{Beliga2015}. Onesuch centrality measure which may be useful for this problem is 
 eigencentrality \cite{Bonacich2007}. Essentially, eigencentrality aims to assign each node as a proportion of the
 sum of all nodes to which it is connected.  Suppose we have a graph, with an adjacency matrix $A$, with $x_i$ being
@@ -73,11 +73,41 @@ probabilities of respective surrounding words. These probability vectors are use
 embedding now reflects the likely surrounding words, synonyms are mapped to similar vectors.
 \cite{Mikolov2013, McCormick2017, Liu2020}
 
-\subsection{Recommender engines}\label{ssec:recommenders}
-There are two main classes of recommender engine described in this section.
-\paragraph{Collaborative Filtering}
-\paragraph{Content Based Recommenders}
+\subsection{Recommender Agents}\label{ssec:recommenders}
+Collaborative filtering (CF) is perhaps the more common recommender engine method. CF treats each user as an entity, 
+and provides recommendations to users based on the behaviours of users it deems to be similar 
+\cite{Melville2010, Herlocker2000}. A simple and less abstract example would be an online shopping site recommending
+product B to someone who has just bought product A on the basis that a significant proportion of shoppers who buy
+product A go on to purchase B.  It produces a simple filter making predictions with no knowledge of either the products,
+just the user patterns
 
-\subsection{Machine learning applications to Whisky}\label{ssec:ml2whisk}
+Content based (CB) recommender engines are the opposite.  Instead of focussing on user patterns they make predictions
+on the basis of specific attributes of each entitiy being recommended \cite{Melville2010, Mooney2000}.  While such a 
+system may use user details, the main knowledge source is the things being recommended.
 
+\subsection{AI applications to Whisky}\label{ssec:ml2whisk}
+
+There is a large gap in the research regarding Artificial Intelligence (AI) applications to whisky.
+Coldevin built a agent based whisky recommender, choosing to use a CB design \cite{Coldevin2005}.  He 
+built a system which used specific attributes about a whisky, such as distillery and cask to recommend based
+on consumer likes or dislikes. Omid-Zohoor and Eghtesadi built another such hybrid (using both CB and CF) 
+agent \cite{Omidzohoor}, however again they relied on specific categorical and ratio features for each bottle.
+An interesting design choice was an agent that predicts on the basis of a users entire profile, and the 
+ratings they give.  Perhaps unsurprisingly their CB model performed poorly with users who gave large 
+numbers of reviews. The more reviews the more noise.
+
+I think it is the case that an agent would be far more useful if it took a set of specific user preferences,
+at a given point in time, and makes a recommendation on that basis.  That way, instead of attempting
+to offer the user a whisky which best matches all of the varied whiskies they like, the user gets
+a recommendation of the specific style they want at this point in time.  This is far 
+closer to coldevin's approach.
+
+In a paper on the subject, Wishart has completed what seems to be the only study of whisky which uses NLP based techniques \cite{Wishart2000}.
+Working with industry experts he selected 84 different whiskies and extracted descriptors from their tasting notes. 
+These were coded and used to cluster the whiskies by HCA. These clusters were manually reviewed and evaluated by 
+industry experts.  He later proposed his set of 12 flavour dimensions for Scotch whisky \cite{Wishart2009}.
+
+While groundbreaking, Whisharts work differs somewhat from that carried out in this project.  Where Wishart aimed to find
+the key flavours in Scotch, working with industry experts, I aim to produce an agent which exhibits intelligence as an 
+industry expert by suggesting whiskies, based only on their tasting notes.
 

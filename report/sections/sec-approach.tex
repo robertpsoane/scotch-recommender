@@ -2,10 +2,10 @@
 \subsection{Requirements}
 The following broad requirements were set out for the agent:
 \begin{itemize}
-    \item \textbf{Backend} - The agent should be considered as part of
-    a backend of a web app\footnote{\textbf{Note:} The webapp was beyond the scope
-    of this project}. Relevant inputs and outputs should be in a python
-    dictionary/JSON format.
+    \item \textbf{Agent and Environment} - The recommender should be an agent acting in an environment. 
+    The environment being the contents of the Master of Malt website, and an interface with a user.
+    The agent could be considered as part of a backend of a web app with outputs in a Python dictionary/JSON
+    format.\footnote{\textbf{Note:} The webapp was beyond the scope of this project}
     \item \textbf{Speed} - The agent should be able to produce a recommendation
     within a couple of seconds.
     \item \textbf{Customisable} - An end user should be able to filter by price,
@@ -25,13 +25,28 @@ also fulfill the requirements of a dataset from which to make predictions.
 Product data for a large range of scotch whiskies was scraped from
 \href{http://masterofmalt.com/}{masterofmalt.com}\footnote{\href{
 http://masterofmalt.com/}{masterofmalt.com} is a major UK whisky 
-and spirits retailer.}, this dataset contains a selection of attributes for each 
-whisky.  It was observed that whiskies which are discontinued tend to be listed
+and spirits retailer.}\footnote{The scraping process is discussed in \autoref{sssec:scrape}}, this dataset contains a selection of attributes for each 
+whisky.  The name and URL are hashed together using MD5 to provide an ID.
+
+It was observed that whiskies which are discontinued tend to be listed
 without a price, whereas those which are merely out of stock are listed with a
 price.  For this reason, and for the sake of simplicty, price was taken as an
 indication of whether a whisky is likely to be in stock.  Those without a price
 were still recorded in the dataset for two reasons; users may wish to make recommendations
 based on liking or disliking them, and they add to the corpus of tasting notes.
+
+\subsection{Choice of Recommender Method}
+While an online spirits shop may use CF recommenders to recommend people viewing a product view another
+similar product (such as recommending gin to customers who like gin etc.), a CF system may fail for
+recommending whiskies based on tastes.
+
+It is not unlikely that a whisky drinker may wish to buy two very different whiskies in one order, just 
+to compare them, or they might enjoy a large range of whiskies. Similarily one might only like a large
+variety of whiskies, and browse and purchase many different styles frequently. 
+It seems somewhat unlikely that shopping habits of whisky geeks would be sufficient to recommend a whisky
+on the basis of specific tastes.
+
+For that reason, a CB recommender model was chosen to be implemented, based upon tasting note data.
 
 \subsection{NLP Methods}\label{whiskylang}
 Word2vec and BoW were both considered as candidate langauge models. While there are
@@ -40,8 +55,8 @@ explained in \autoref{words}.
 
 Word2vec encapsulates a far greater amount of semantic data, however re-training
 word2vec regularly with new data would be expensive. As a quicker model to train
-BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure (which will
-be referred to as eRAKE) were considered for keyword extraction.
+BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure discussed in 
+\autoref{ssec:erake} were considered for KE.
 
 \subsubsection{The Ideal Vector and Similarity}\label{sssec:cossim}
 The BoW model maps each input to a vector. To make recommendations, the agent must
@@ -78,3 +93,47 @@ the corresponding whisky's vector, and our IV $\utilde{v} \in \mathbb{R}^{n}$.
 As demonstrated in equation~\ref{eqn:cossim}, the product of 
 $\textbf{D} \cdot \utilde{v} = \utilde{c}$ where $\utilde{c}$ is our vector 
 of cosine similarities.
+
+\subsubsection{Tasting Notes}\label{ssec:tnotes}
+Quite usefully, as shown in table \ref{tab:tnotes}\footnote{All table data from \href{http://masterofmalt.com/}{masterofmalt.com}}, whisky tasting notes are very keyword dense.
+This means most words are candidate keywords, however some KE techniques (such as RAKE) are aimed at 
+finding keywords from far less keyword dense text. This must be considered when choosing a KE method.
+
+\begin{table}
+    \centering
+    \caption{A selection of whisky tasting notes from Master of Malt}\label{tab:tnotes}
+    \begin{tabular}{p{0.2\linewidth} p{0.8\linewidth}} 
+        \toprule
+        Whisky                                    & Tasting Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  \\
+        \midrule
+              Laphroaig 10 Year Old                     & 
+        \begin{minipage}[t]{0.8\columnwidth}\textbf{Nose:}\textit{~This opens on big, smoky muscular peat notes. There are
+             spices, and liquorice, as well as a big dose of salt. This whisky has become slightly sweeter in recent years,
+              and it appears beautifully on the nose, amidst the classic iodine/sticking plasters and cool wood smoke we
+               love.}\\\textbf{Palate:}\textit{~Seaweed-led, with a hint of vanilla ice cream and more than a whiff of notes
+                from the first aid box (TCP, plasters etc). The oak is big, and muscles its way into the fore as you hold 
+                this whisky over your tongue. An upsurge of spices develop – cardamom/black pepper/chilli.
+                }\\\textbf{Finish:}\textit{~Big and drying, as the savoury, tarry notes build up with an iodine complexity
+                .}\end{minipage}  \\
+                \midrule
+                Talisker 10 Year Old                      & 
+        \begin{minipage}[t]{0.8\columnwidth}\textbf{Nose:}\textit{~A fresh and fragrant nose. Through thick, pungent 
+            smoke comes sweet pear and apple peels, with pinches of maritime salt from kippers, seaweed.
+            }\\\textbf{Palate:}\textit{~It's a bonfire of peat crackling with black pepper, with a touch of brine 
+            and dry barley. A welcome delivery of orchard fruit provides a delicate and beautiful balance.
+            }\\\textbf{Finish:}~\textit{In a long finish, bonfire embers toast malt and crystallise a sugary underlay
+            }\end{minipage}                                                                                                                                                                                                                                                    \\
+        \toprule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Eigencentrality based Rapid Automatic Keyword Extraction (eRAKE)}\label{ssec:erake}
+As discussed in \autoref{sssec:gbkwe}, co-occurence graphs can be useful for KE.  RAKE is onesuch method where primitive
+centrality measures are used to rank nodes.  Another such method uses eigencentrality.  This steps beyond words which
+themselves have a high co-occurence and rewards words with significantly weighted edges to words with high co-occurences.
+This could be a reasonable compromise for retaining semantic data.  If we aren't keeping full semantic data we are
+at least stepping beyond merely looking at frequencies, aiming for descriptors with larger amounts of influence across
+the dataset.
+
+As the graph is undirected, our adjacency matrix is hermitian and thus its eigenvectors relatively simple to find,
+this can be completed using SciPy's $eigh()$ function \cite{hubbard_2020, 2020NumPy}.
