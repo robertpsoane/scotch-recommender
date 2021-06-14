@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUN 2021 13:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.11)  13 JUN 2021 17:05
 entering extended mode
 **"c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/presentation/presentation.tex"
 (c:/Users/rober/Google Drive/Programming/Python/scotch-recommender/presentation/presentation.tex
@@ -587,14 +587,17 @@ Package: amsthm 2020/05/29 v2.20.6
 ) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerbasethemes.sty)) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerthemedefault.sty (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerfontthemedefault.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamercolorthemedefault.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerinnerthemedefault.sty
 \beamer@dima=\dimen282
 \beamer@dimb=\dimen283
-) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerouterthemedefault.sty))) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerthemeMadrid.sty (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamercolorthemewhale.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamercolorthemeorchid.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerinnerthemerounded.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerouterthemeinfolines.sty)) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/mathtools\mathtools.sty
+) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerouterthemedefault.sty))) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerthemeRochester.sty (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerouterthemesidebar.sty
+\beamer@sidebarwidth=\dimen284
+\beamer@headheight=\dimen285
+) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamerinnerthemerectangles.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamercolorthemewhale.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamercolorthemeorchid.sty)) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/beamer\beamercolorthemedolphin.sty) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/mathtools\mathtools.sty
 Package: mathtools 2021/04/12 v1.27 mathematical typesetting tools
  (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/latex-tools\calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count323
 \calc@Bcount=\count324
-\calc@Adimen=\dimen284
-\calc@Bdimen=\dimen285
+\calc@Adimen=\dimen286
+\calc@Bdimen=\dimen287
 \calc@Askip=\skip64
 \calc@Bskip=\skip65
 LaTeX Info: Redefining \setlength on input line 80.
@@ -609,38 +612,38 @@ LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \g_MT_multlinerow_int=\count326
-\l_MT_multwidth_dim=\dimen286
+\l_MT_multwidth_dim=\dimen288
 \origjot=\skip67
-\l_MT_shortvdotswithinadjustabove_dim=\dimen287
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen288
-\l_MT_above_intertext_sep=\dimen289
-\l_MT_below_intertext_sep=\dimen290
-\l_MT_above_shortintertext_sep=\dimen291
-\l_MT_below_shortintertext_sep=\dimen292
+\l_MT_shortvdotswithinadjustabove_dim=\dimen289
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen290
+\l_MT_above_intertext_sep=\dimen291
+\l_MT_below_intertext_sep=\dimen292
+\l_MT_above_shortintertext_sep=\dimen293
+\l_MT_below_shortintertext_sep=\dimen294
 \xmathstrut@box=\box72
-\xmathstrut@dim=\dimen293
+\xmathstrut@dim=\dimen295
 ) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/undertilde\undertilde.sty
 Package: undertilde 2000/08/08 v1.0 Tilde under a math object
 \knuthian@fdfive=\skip68
 ) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen294
-\lightrulewidth=\dimen295
-\cmidrulewidth=\dimen296
-\belowrulesep=\dimen297
-\belowbottomsep=\dimen298
-\aboverulesep=\dimen299
-\abovetopsep=\dimen300
-\cmidrulesep=\dimen301
-\cmidrulekern=\dimen302
-\defaultaddspace=\dimen303
+\heavyrulewidth=\dimen296
+\lightrulewidth=\dimen297
+\cmidrulewidth=\dimen298
+\belowrulesep=\dimen299
+\belowbottomsep=\dimen300
+\aboverulesep=\dimen301
+\abovetopsep=\dimen302
+\cmidrulesep=\dimen303
+\cmidrulekern=\dimen304
+\defaultaddspace=\dimen305
 \@cmidla=\count327
 \@cmidlb=\count328
-\@aboverulesep=\dimen304
-\@belowrulesep=\dimen305
+\@aboverulesep=\dimen306
+\@belowrulesep=\dimen307
 \@thisruleclass=\count329
 \@lastruleclass=\count330
-\@thisrulewidth=\dimen306
+\@thisrulewidth=\dimen308
 ) (C:\Users\rober\AppData\Roaming\MiKTeX\tex/latex/threeparttable\threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
 \@tempboxb=\box73
@@ -678,14 +681,14 @@ LaTeX Font Info:    ... okay on input line 101.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95003pt, 342.2953pt, 10.95003pt)
+* h-part:(L,W,R)=(28.45274pt, 307.28987pt, 28.45274pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=342.2953pt
+* \textwidth=307.28987pt
 * \textheight=244.6939pt
-* \oddsidemargin=-61.31996pt
-* \evensidemargin=-61.31996pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -707,13 +710,13 @@ LaTeX Font Info:    ... okay on input line 101.
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count332
-\scratchdimen=\dimen307
+\scratchdimen=\dimen309
 \scratchbox=\box75
 \nofMPsegments=\count333
 \nofMParguments=\count334
 \everyMPshowfont=\toks44
 \MPscratchCnt=\count335
-\MPscratchDim=\dimen308
+\MPscratchDim=\dimen310
 \MPnumerator=\count336
 \makeMPintoPDFobject=\count337
 \everyMPtoPDFconversion=\toks45
@@ -818,7 +821,7 @@ File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mat
 ) [2
 
 ]
-Overfull \vbox (2.41609pt too high) detected at line 150
+Overfull \vbox (3.32498pt too high) detected at line 150
  []
 
 [3
@@ -845,7 +848,16 @@ Overfull \vbox (2.41609pt too high) detected at line 150
 
 ] [14
 
-] [15
+]
+Overfull \hbox (8.87425pt too wide) in paragraph at lines 332--332
+ [] 
+ []
+
+
+Overfull \vbox (6.71718pt too high) detected at line 332
+ []
+
+[15
 
 ] [16
 
@@ -860,11 +872,11 @@ Overfull \vbox (2.41609pt too high) detected at line 150
 ] [21
 
 ]
-<graphics/all_recommendations.png, id=741, 578.16pt x 361.35pt>
+<graphics/all_recommendations.png, id=205, 578.16pt x 361.35pt>
 File: graphics/all_recommendations.png Graphic file (type png)
 <use graphics/all_recommendations.png>
 Package pdftex.def Info: graphics/all_recommendations.png  used on input line 442.
-(pdftex.def)             Requested size: 273.83728pt x 171.14679pt.
+(pdftex.def)             Requested size: 245.83282pt x 153.64064pt.
  [22
 
  <./graphics/all_recommendations.png>] [23
@@ -886,17 +898,17 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: FB0222EAD47948C3C6E2A0F9B2C5B2BD;2476.
  ) 
 Here is how much of TeX's memory you used:
- 21760 strings out of 479173
- 406242 string characters out of 2864045
- 698175 words of memory out of 3000000
- 38814 multiletter control sequences out of 15000+600000
- 419181 words of font info for 82 fonts, out of 8000000 for 9000
+ 21573 strings out of 479173
+ 400524 string characters out of 2864045
+ 691636 words of memory out of 3000000
+ 38625 multiletter control sequences out of 15000+600000
+ 418172 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,126p,498b,753s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,13n,126p,498b,706s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (24 pages, 415807 bytes).
+Output written on presentation.pdf (24 pages, 275360 bytes).
 PDF statistics:
- 895 PDF objects out of 1000 (max. 8388607)
+ 286 PDF objects out of 1000 (max. 8388607)
  68 named destinations out of 1000 (max. 500000)
- 490 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 184 words of extra memory for PDF output out of 10000 (max. 10000000)
 

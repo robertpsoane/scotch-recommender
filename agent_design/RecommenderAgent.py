@@ -32,6 +32,9 @@ DEF_PARAMS = {
 
 UPDATE_N = 3
 
+# Constants for managing reviews - if set to True, will include reviews
+# in model, else will only use MoM tasting notes
+INC_REVIEWS = True
 MOM_MIN_WEIGHTING = 50
 
 # Useful vector functions:
@@ -295,25 +298,28 @@ class WhiskyRecommender:
         """
         sumReviews - sums reviews into MoM vectors, weighted in favour of MoM.
         """
-        print(f"Summing reviews into Master of Malt model for {name}")
-        # Getting feature cols
-        cols = mom.drop(columns="ID").columns
+        if INC_REVIEWS:
+            print(f"Summing reviews into Master of Malt model for {name}")
+            # Getting feature cols
+            cols = mom.drop(columns="ID").columns
 
-        # Setting ID as index
-        mom.index=mom.ID
-        rev.index = rev.ID
+            # Setting ID as index
+            mom.index=mom.ID
+            rev.index = rev.ID
 
-        # Selecting number of reviews from reviews dataframe, and finding weighting factor
-        n = reviews[["n"]]
-        n["n"] = n["n"].apply(lambda n: min(1, n/MOM_MIN_WEIGHTING))
-        
-        # Adding weighted reviews to mom vectors, and re-normalising
-        rev[cols] = rev[cols].add(mom[cols]).dropna().apply(lambda row: normVec(row), axis=1)
-        
-        # Replacing relevant vectors with amalgamated ones which include reviews
-        mom.loc[rev.index] = rev
-        # Drop ID and reset index       
-        mom = mom.drop(columns="ID").reset_index()
+            # Selecting number of reviews from reviews dataframe, and finding weighting factor
+            n = reviews[["n"]]
+            n["n"] = n["n"].apply(lambda n: min(1, n/MOM_MIN_WEIGHTING))
+            
+            # Adding weighted reviews to mom vectors, and re-normalising
+            rev[cols] = rev[cols].add(mom[cols]).dropna().apply(lambda row: normVec(row), axis=1)
+            
+            # Replacing relevant vectors with amalgamated ones which include reviews
+            mom.loc[rev.index] = rev
+            # Drop ID and reset index       
+            mom = mom.drop(columns="ID").reset_index()
+        else:
+            pass
 
         return mom
 
