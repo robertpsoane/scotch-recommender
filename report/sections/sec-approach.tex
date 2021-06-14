@@ -3,7 +3,7 @@
 The following broad requirements were set out for the agent:
 \begin{itemize}
     \item \textbf{Agent and Environment} - The recommender should be an agent acting in an environment. 
-    The environment being the contents of the Master of Malt website, and an interface with a user.
+    The environment being the contents of the Master of Malt (MoM) website, and an interface with a user.
     The agent could be considered as part of a backend of a web app with outputs in a Python dictionary/JSON
     format.\footnote{\textbf{Note:} The webapp was beyond the scope of this project}
     \item \textbf{Speed} - The agent should be able to produce a recommendation
@@ -19,19 +19,17 @@ The following broad requirements were set out for the agent:
 
 \subsection{The Data}
 In order to build a whisky specific language model (discussed further in
-\autoref{whiskylang}), a large corpus of tasting notes was required. This could
-also fulfill the requirements of a dataset from which to make predictions.
+\autoref{whiskylang}), a large corpus of tasting notes was required.
 
 Product data for a large range of scotch whiskies was scraped from
-\href{http://masterofmalt.com/}{masterofmalt.com}\footnote{\href{
-http://masterofmalt.com/}{masterofmalt.com} is a major UK whisky 
-and spirits retailer.}\footnote{The scraping process is discussed in \autoref{sssec:scrape}}, this dataset contains a selection of attributes for each 
-whisky.  The name and URL are hashed together using MD5 to provide an ID.
+\href{http://masterofmalt.com/}{masterofmalt.com}, this dataset contains a selection of attributes for each 
+whisky.\footnote{\href{http://masterofmalt.com/}{masterofmalt.com} is a major UK whisky and spirits retailer.}$^{,}$\footnote{The scraping process is discussed in \autoref{sssec:scrape}}
+The name and URL are hashed together using MD5 to provide an ID.
 
 It was observed that whiskies which are discontinued tend to be listed
 without a price, whereas those which are merely out of stock are listed with a
 price.  For this reason, and for the sake of simplicty, price was taken as an
-indication of whether a whisky is likely to be in stock.  Those without a price
+indication of stock.  Those without a price
 were still recorded in the dataset for two reasons; users may wish to make recommendations
 based on liking or disliking them, and they add to the corpus of tasting notes.
 
@@ -43,15 +41,14 @@ recommending whiskies based on tastes.
 It is not unlikely that a whisky drinker may wish to buy two very different whiskies in one order, just 
 to compare them, or they might enjoy a large range of whiskies. Similarily one might only like a large
 variety of whiskies, and browse and purchase many different styles frequently. 
-It seems somewhat unlikely that shopping habits of whisky geeks would be sufficient to recommend a whisky
+It seems somewhat unlikely that shopping habits of whisky enthusiasts is sufficient to recommend a whisky
 on the basis of specific tastes.
 
 For that reason, a CB recommender model was chosen to be implemented, based upon tasting note data.
 
 \subsection{NLP Methods}\label{whiskylang}
 Word2vec and BoW were both considered as candidate langauge models. While there are
-many pretrained models available, these are likely to be unsuitable as breifly
-explained in \autoref{words}.
+many pretrained models available, these are likely to be unsuitable due to whisky's lexicon.
 
 Word2vec encapsulates a far greater amount of semantic data, however re-training
 word2vec regularly with new data would be expensive. As a quicker model to train
@@ -59,16 +56,29 @@ BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure discussed i
 \autoref{ssec:erake} were considered for KE.
 
 \subsubsection{The Ideal Vector and Similarity}\label{sssec:cossim}
-The BoW model maps each input to a vector. To make recommendations, the agent must
+BoW maps each input to a vector. To make recommendations, the agent must
 map the user input to a vector in the same space as the BoW model. This
 \emph{Ideal Vector} (IV) represents a hypothetical whisky which best represents 
 the user's input. Cosine similarity can then be used to ascertain which whiskies in 
 the database best match the input.  Cosine similarity indicates the angle between
-vectors \cite{Melville2010}. As for $\utilde{u}, \utilde{v}\in \mathbb{R} ^{k}$, 
-$\utilde{u} \cdot \utilde{v} \coloneqq \vert \utilde{u} \vert \vert \utilde{v} \vert \cos{\theta}$
-by storing all vectors normalised, this reduces such that the cosine similarity of
-$\utilde{u}$ \& $\utilde{v}$ is simply their scalar product.
+vectors \cite{Melville2010}. As  
+\begin{equation}
+    \utilde{u} \cdot \utilde{v} \coloneqq \vert \utilde{u} \vert \vert \utilde{v} \vert \cos{\theta}
+\end{equation}
+for $\utilde{u}, \utilde{v}\in \mathbb{R} ^{k}$, by storing all vectors normalised, this reduces such
+that the cosine similarity of $\utilde{u}$ \& $\utilde{v}$ is simply their scalar product.
 
+Calculating cosine similarity for a large dataset is relatively straightforward.
+Consider our dataset of $m$ whiskies as
+\begin{equation}
+    \textbf{D} \in \mathbb{R}^{m \times n}
+\end{equation}
+with each row representing the corresponding whisky's vector, and our IV $\utilde{v} \in \mathbb{R}^{n}$.
+The product of 
+\begin{equation}
+    \textbf{D} \cdot \utilde{v} = \utilde{c}    
+\end{equation}
+or 
 \begin{equation}\label{eqn:cossim}
     \begin{pmatrix}
         d_{11} & d_{12} & ... & d_{1n}\\
@@ -85,17 +95,13 @@ $\utilde{u}$ \& $\utilde{v}$ is simply their scalar product.
         c_1 \\ c_2 \\ c_3 \\ ... \\ c_n
     \end{pmatrix}
 \end{equation}
+gives the cosine similarities between IV and each whisky in $D$, where $\utilde{c}$ is our vector of cosine similarities.
 
-Calculating cosine similarity for a large dataset is relatively straightforward,
-and this method was implemented in the agent. Consider our dataset of $m$ 
-whiskies as a matrix $\textbf{D} \in \mathbb{R}^{m \times n}$ with each row representing
-the corresponding whisky's vector, and our IV $\utilde{v} \in \mathbb{R}^{n}$.
-As demonstrated in equation~\ref{eqn:cossim}, the product of 
-$\textbf{D} \cdot \utilde{v} = \utilde{c}$ where $\utilde{c}$ is our vector 
-of cosine similarities.
+
+
 
 \subsubsection{Tasting Notes}\label{ssec:tnotes}
-Quite usefully, as shown in table \ref{tab:tnotes}\footnote{All table data from \href{http://masterofmalt.com/}{masterofmalt.com}}, whisky tasting notes are very keyword dense.
+Quite usefully, as shown in table \ref{tab:tnotes}, whisky tasting notes are very keyword dense.\footnote{All table data from \href{http://masterofmalt.com/}{masterofmalt.com}}
 This means most words are candidate keywords, however some KE techniques (such as RAKE) are aimed at 
 finding keywords from far less keyword dense text. This must be considered when choosing a KE method.
 
@@ -133,11 +139,11 @@ finding keywords from far less keyword dense text. This must be considered when 
 \end{table}
 
 \subsubsection{Eigencentrality based Rapid Automatic Keyword Extraction (eRAKE)}\label{ssec:erake}
-As discussed in \autoref{sssec:gbkwe}, co-occurence graphs can be useful for KE.  RAKE is onesuch method where primitive
+As discussed in section \ref{sssec:gbkwe}, co-occurence graphs can be useful for KE.  RAKE is onesuch method where primitive
 centrality measures are used to rank nodes.  Another such method uses eigencentrality.  This steps beyond words which
 themselves have a high co-occurence and rewards words with significantly weighted edges to words with high co-occurences.
-This could be a reasonable compromise for retaining semantic data.  If we aren't keeping full semantic data we are
-at least stepping beyond merely looking at frequencies, aiming for descriptors with larger amounts of influence across
+This could be a reasonable compromise for retaining semantic data.  While losing full semantic data we are
+at least stepping beyond merely looking at frequencies, selecting descriptors with larger amounts of influence across
 the dataset.
 
 As the graph is undirected, our adjacency matrix is hermitian and thus its eigenvectors relatively simple to find,

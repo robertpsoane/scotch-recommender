@@ -140,19 +140,9 @@ The Scotch whisky industry is massive.
 \end{frame}
 
 \subsection{Whisky and Words}
-\begin{frame}
-    \frametitle{Single, Malt, Blends and Grain}
-    \begin{itemize}
-        \item `Single' $\implies$ One distillery.
-        \item `Malt' $\implies$ 100\% malted barley
-        \item `Blended' $\implies$ Multiple distilleries
-        \item `Grain' $\implies$ Any grain, not just malt.
-    \end{itemize}
-    
-\end{frame}
 
 \begin{frame}
-    \frametitle{Flavour Dimensions}
+    \frametitle{Whisky and Words}
     Various whisky-specific words are used.\footnote{
         G. N. Bathgate, ``The influence of malt and wort processing on spirit character: the lost styles of
     Scotch malt whisky,'' \emph{Journal of the Institute of Brewing}, vol. 125, no. 2, pp. 200-213, 2019}
@@ -207,8 +197,40 @@ The Scotch whisky industry is massive.
     \frametitle{Graph Based KE}
     \begin{itemize}
         \item Co-occurence graph
-        \item Each node represents a candidate keyword
-        \item Centrality measures are used to select keywords
+        \item RAKE\footnote{ S. Rose, D. Engel, N. Cramer, and W. Cowley, 
+        ``Automatic keyword extraction,'' \emph{Text Mining:
+        Applications and Theory}, pp. 1-277, 2010}, Eigencentrality\footnote{https://linkinghub.elsevier.com/retrieve/pii/S0378873307000342}
+    \end{itemize}
+    \begin{block}{Eigencentrality}
+        Each node's centrality proportional to all adjacent nodes.
+        \begin{itemize}
+            \item Adjacency matrix $A$ 
+            \item $i^{th}$ node's score $x_i$ 
+            \item $x_i = \frac{1}{\lambda}A_{ij}x_j$
+            \item $\textbf{A}\cdot \utilde{x} = \lambda \utilde{x}$
+        \end{itemize}
+
+    \end{block}
+\end{frame}
+
+\begin{frame}{Co-Occurence graph}
+    
+        Sample tasting notes:\footnote{Adapted from masterofmalt.com's listings for Caol Ila 12 and Lagavulin 16}
+        \begin{itemize}
+            \item ``\emph{Long, peppery, spicy warmth, smoke.}''
+            \item ``\emph{Long, spicy, figs, dates, peat smoke, vanilla.}''
+        \end{itemize}
+        \begin{figure}[!htb]
+            \centering
+            \includegraphics[width=0.8\textwidth]{graphics/Graph}
+        \end{figure}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Graph Based KE}
+    \begin{itemize}
+        \item Co-occurence graph
         \item RAKE\footnote{ S. Rose, D. Engel, N. Cramer, and W. Cowley, 
         ``Automatic keyword extraction,'' \emph{Text Mining:
         Applications and Theory}, pp. 1-277, 2010}, Eigencentrality\footnote{https://linkinghub.elsevier.com/retrieve/pii/S0378873307000342}

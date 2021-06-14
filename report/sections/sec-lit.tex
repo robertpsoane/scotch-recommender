@@ -3,20 +3,20 @@
 \subsection{Language Models}\label{ssec:kwe}
 In general, Natural Language Processing (NLP) tasks require a language model of some form or another.
 Artificial Intelligence (AI) based methods cannot process text in its native unstructured form, but need to convert the
-raw text to a structured form suitable for the computer to understand. This is often referred to as \emph{embedding}.
+raw text to a structured form suitable for the computer understanding. This is often referred to as \emph{embedding}.
 
-The two predominant model types are \emph{syntactic} and \emph{semantic} models. 
-Syntactic methods transform text to a set of `symbols' which carry no inherent meaning, but can be 
+The two dominant model types are \emph{syntactic} and \emph{semantic} models. 
+Syntactic models transform text to a set of `symbols' which carry no inherent meaning, but can be 
 compared across instances in a dataset, wheras semantic methods (such as those described in \autoref{ssec:w2v})
-retain a general understanding of the text \cite{Cambria2014}.
+retain a contextual understanding of the text \cite{Cambria2014}.
 
 A dominant syntactic method for transforming unstructured text into a computer-analysable form is the Bag-of-words 
 (BoW) model. 
 The dataset is tokenized (split into individual words), lemmatized (see \autoref{sssec:stemlemma})
 and $k$ keywords are extracted (see \autoref{sssec:kwe}) to form our bag of words $\utilde{b}\in \mathbb{R} ^{k}$.
-Each document\footnote{It is common to refer to an instance in a text dataset as a \emph{document}} is
+Each documentis
 transformed to a vector $\utilde{v}\in \mathbb{R} ^{k}$ such that $v_i$ is the frequency 
-of the word $b_i$ occuring in the document \cite{Cambria2014, StevenBirdEwanKlein2009, Zhang2010}.
+of the word $b_i$ occuring in the document \cite{Cambria2014, StevenBirdEwanKlein2009, Zhang2010}.\footnote{It is common to refer to an instance in a text dataset as a \emph{document}}
 
 \subsubsection{Stemming and Lemmatization}\label{sssec:stemlemma}
 When dealing with text data, it is not uncommon to have multiple forms of the same word.  A syntactic model would view
@@ -26,8 +26,8 @@ Porter proposed an algorithm for removing word suffixes to aim for a normal form
 \emph{stemming}. With no semantic understanding, the algorithm searches for specific suffix patterns and removes them
 until it is unable to \cite{Porter1980}.
 
-A more semantic approach would be \emph{lemmatization}. Instead of algorithmically removing word endings lemmatization 
-aims to normalise words to a real word root, that is a lemmatizer would reduce the word to the dictionary
+A more semantic approach would be \emph{lemmatization}. Instead of algorithmically removing word endings, lemmatization 
+aims to normalise words to a real word root. A lemmatizer would reduce the word to the dictionary
 form of the word \cite{Jayakodi2016}.  A lemmatizer implementation in Python is the WordNetLemmatizer in the Python 
 Natural Language Tool Kit (NLTK), which queries the WordNet corpus to find the root word 
 \cite{StevenBirdEwanKlein2009, princetonuniversity_2010}. 
@@ -35,7 +35,7 @@ Natural Language Tool Kit (NLTK), which queries the WordNet corpus to find the r
 \subsubsection{Keyword Extraction}\label{sssec:kwe}
 For syntactic methods, keyword extraction (KE) is key.  For the purposes of this report, a keyword is a word of particular
 relevance or importance, and from which we might extract useful information.  KE refers to strategies
-based on which those important words can be ranked, and only the most relevant kept.
+based on which those important words can be ranked, keeping only the most relevant.
 
 \paragraph{TF-IDF}\label{ssec:tfidf}
 
@@ -44,68 +44,73 @@ implemented in Scikit-Learn \cite{Barupal2011}.  TF-IDF is a statistic for scori
 how frequently it occurs in a document, and how frequently it occurs in the dataset \cite{Ramos2003}.
 
 Scoring as such aims to penalise words that occur too frequently across a document, boosting the scores of words in an 
-individual document for which they with disproportionately high frequency.
+individual document which appear with disproportionately high frequency.
 
 \paragraph{Graph based KE}\label{sssec:gbkwe}
 
 Another approach for KE is the use of graph-based ranking methods.  These methods model words as
-nodes on a mathematical network graph\footnote{A graph $G$ being a set of nodes $V$ and edges $E$.  For a brief 
+nodes on a mathematical network graph.\footnote{A graph $G$ being a set of nodes $V$ and edges $E$.  For a brief 
 summary see Rashid Bin Muhammad's site http://personal.kent.edu/~rmuhamma/GraphTheory/MyGraphTheory/defEx.htm
-\cite{muhammad}.}.  A popular example is the \emph{Rapid Automatic Keyword Extraction} (RAKE) algorithm, which
-splits finds a set of candidate keywords, and models them as a co-occurence graph.  
+\cite{muhammad}.}  A popular example is the \emph{Rapid Automatic Keyword Extraction} (RAKE) algorithm, which
+finds a set of candidate keywords, and models them as a co-occurence graph.  
 
 Each node represents a candidate, each edge co-occurence, and it's weight the number of co-occurences.  The 
-candidates are then ranked according to frequency and degree (sum of weights)~\cite{Rose2010}.
+candidates are ranked according to frequency and degree~\cite{Rose2010}.
 
 Beliga et al., survey a wide range of graph based KE techniques, many of which rely on different 
-centrality measures \cite{Beliga2015}. Onesuch centrality measure which may be useful for this problem is 
-eigencentrality \cite{Bonacich2007}. Essentially, eigencentrality aims to assign each node as a proportion of the
-sum of all nodes to which it is connected.  Suppose we have a graph, with an adjacency matrix $A$, with $x_i$ being
-the centrality of the $i^{th}$ node, we would set $x_i = \frac{1}{\lambda}A_{ij}x_j$ (using the summation convention). This
-reduces to the eigenvector equation $\textbf{A}\cdot \utilde{x} = \lambda \utilde{x}$. This is given with more detail in 
-\cite{Newman2010}.
+centrality measures \cite{Beliga2015}. Onesuch centrality measure is 
+eigencentrality \cite{Bonacich2007}. 
+Eigencentrality scores each node as a proportion of the sum of the scores of all nodes to which it is connected. 
+Suppose we have a graph, with an adjacency matrix $A$, we would set
+\begin{equation}
+    x_i = \frac{1}{\lambda}A_{ij}x_j
+\end{equation}
+using the summation convention, where $x_i$ is the centrality of the $i^{th}$ node. This reduces to the eigenvector equation 
+\begin{equation}
+    \textbf{A}\cdot \utilde{x} = \lambda \utilde{x}
+\end{equation} This is given with more detail in \cite{Newman2010}.
 
 \subsubsection{Word2vec}\label{ssec:w2v}
 \emph{Word2vec} is a semantic language model developed by Google.  Instead of encoding each word as a discrete symbol
 as with BoW, word2vec embeddings retain similarity between similar words. This is achieved by training an \emph{Artificial 
-Neural Network} (ANN) to predict the surrounding words for any given word.  The weights of the hiddern layer represent
+Neural Network} (ANN) to predict surrounding words for each given word.  The hidden layer's weights represent
 probabilities of respective surrounding words. These probability vectors are used as embeddings for each word. As a words
 embedding now reflects the likely surrounding words, synonyms are mapped to similar vectors.
 \cite{Mikolov2013, McCormick2017, Liu2020}
 
 \subsection{Recommender Agents}\label{ssec:recommenders}
-Collaborative filtering (CF) is perhaps the more common recommender engine method. CF treats each user as an entity, 
-and provides recommendations to users based on the behaviours of users it deems to be similar 
-\cite{Melville2010, Herlocker2000}. A simple and less abstract example would be an online shopping site recommending
-product B to someone who has just bought product A on the basis that a significant proportion of shoppers who buy
-product A go on to purchase B.  It produces a simple filter making predictions with no knowledge of either the products,
-just the user patterns
+Collaborative filtering (CF) is perhaps the most common recommender engine method. CF treats each user as an entity, 
+and provides recommendations to users based on the behaviours of users it considers similar 
+\cite{Melville2010, Herlocker2000}. A simple, less abstract, example would be an online shopping site recommending
+product $B$ to someone who has bought product $A$ on the basis that a significant proportion of shoppers who buy
+product $A$ go on to purchase $B$.  It produces a simple filter making predictions with no product knowledge,
+just user patterns.
 
 Content based (CB) recommender engines are the opposite.  Instead of focussing on user patterns they make predictions
 on the basis of specific attributes of each entitiy being recommended \cite{Melville2010, Mooney2000}.  While such a 
-system may use user details, the main knowledge source is the things being recommended.
+system may use user details, the main knowledge source is the entities being recommended.
 
 \subsection{AI applications to Whisky}\label{ssec:ml2whisk}
 
 There is a large gap in the research regarding Artificial Intelligence (AI) applications to whisky.
 Coldevin built a agent based whisky recommender, choosing to use a CB design \cite{Coldevin2005}.  He 
-built a system which used specific attributes about a whisky, such as distillery and cask to recommend based
+built a system using specific attributes about a whisky to recommend based
 on consumer likes or dislikes. Omid-Zohoor and Eghtesadi built another such hybrid (using both CB and CF) 
-agent \cite{Omidzohoor}, however again they relied on specific categorical and ratio features for each bottle.
-An interesting design choice was an agent that predicts on the basis of a users entire profile, and the 
+agent \cite{Omidzohoor}, however again they relied on specific categorical and ratio features.
+An interesting design choice was to recommend on the basis of a users entire profile, and the 
 ratings they give.  Perhaps unsurprisingly their CB model performed poorly with users who gave large 
 numbers of reviews. The more reviews the more noise.
 
-I think it is the case that an agent would be far more useful if it took a set of specific user preferences,
-at a given point in time, and makes a recommendation on that basis.  That way, instead of attempting
+I think it is the case that an agent would be far more effective if it took a set of specific user preferences,
+at a given point in time, and makes a recommendation on that basis.  Instead of attempting
 to offer the user a whisky which best matches all of the varied whiskies they like, the user gets
 a recommendation of the specific style they want at this point in time.  This is far 
-closer to coldevin's approach.
+closer to Coldevin's approach.
 
-In a paper on the subject, Wishart has completed what seems to be the only study of whisky which uses NLP based techniques \cite{Wishart2000}.
+In a paper on the subject, Wishart completed what seems to be the only study of whisky which uses NLP \cite{Wishart2000}.
 Working with industry experts he selected 84 different whiskies and extracted descriptors from their tasting notes. 
-These were coded and used to cluster the whiskies by HCA. These clusters were manually reviewed and evaluated by 
-industry experts.  He later proposed his set of 12 flavour dimensions for Scotch whisky \cite{Wishart2009}.
+These were coded and used to cluster the whiskies. These clusters were manually reviewed and evaluated by 
+industry experts.  He later proposed a set of 12 flavour dimensions for Scotch whisky \cite{Wishart2009}.
 
 While groundbreaking, Whisharts work differs somewhat from that carried out in this project.  Where Wishart aimed to find
 the key flavours in Scotch, working with industry experts, I aim to produce an agent which exhibits intelligence as an 
