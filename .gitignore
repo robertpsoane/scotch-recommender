@@ -1,5 +1,8 @@
+# Python things
 __pycache__
 .ipynb_checkpoints
 _archive
 .vscode
 sqlite3.exe
+
+# LaTeX Files

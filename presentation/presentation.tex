@@ -90,9 +90,9 @@
 \title[Scotch Recommender]{An NLP-Based Scotch Whisky Recommender Agent} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{Robert Soane} % Your name
-\institute[14302983] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+\institute[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-14302983 \\ % Your institution for the title page
+ \\ % Your institution for the title page
 \medskip
 }
 \date{\today} % Date, can be changed to a custom date
@@ -127,16 +127,6 @@ The Scotch whisky industry is massive.
 
 \begin{frame}
     \frametitle{Distillation}
-    The approximate whisky production process:\footnote{K. Jacques, T. Lyons, and D. Kelsall, The Alcohol Textbook 4th edition, 4th ed. Nottingham
-    University Press, 2003.}
-    \begin{itemize}
-        \item Grains germinate to develop sugars
-        \item Sugars extracted to produce \emph{wort}
-        \item Wort fermented
-        \item Beer distilled
-        \item \emph{New make} aged
-    \end{itemize}
-
     \begin{block}{The Law}
         Legal definition of Scotch:\footnote{legislation.gov.uk/uksi/2009/2890/regulation/3/made}
         \begin{itemize}
@@ -273,12 +263,14 @@ The Scotch whisky industry is massive.
 \subsection{The Agent and the Environment}
 \begin{frame}
     \frametitle{The Agent and the Environment}
+    \begin{block}{Defining the System}
     \begin{itemize}
         \item \textbf{The Agent:} Recommends based on user input and 
         tasting notes. Capacity to autonomously update database.
         \item \textbf{The Environment:} The user input, and an online spirits
         shop.
     \end{itemize}
+\end{block}
 \end{frame}
 
 \subsection{The Data}
@@ -307,30 +299,45 @@ The model is re-trained after each update.
 \end{itemize}
         
 \column{.5\textwidth} % Right column and width
-\begin{table}
-    \centering
-    \begin{threeparttable}
 
-        \caption{Times of TF-IDF, RAKE and eRAKE with various lemmatizers in seconds.}\label{tab:times}
-        \begin{tabular}{llll} 
-        \toprule
-                           & TF-IDF        & RAKE           & eRAKE           \\
-        U       & \textit{1247} & \textit{0.441} & \textit{-}      \\
-        WN & \textit{1461} & \textit{130.2} & \textit{-}      \\
-        WL   & \textit{1209} & \textit{4.947} & \textit{47.6}  \\
-        \bottomrule
-        \end{tabular}
-        \begin{tablenotes}
-            \small
-            \item \textbf{Note:} eRAKE was only applied to the WhiskyLemmatized corpus
-            as the eRake implementation included the WhiskyLemmatizer.
-            \item \emph{u}: Unlemmatized, \emph{WN}: WordNet, \emph{WL}: Whisky
-        \end{tablenotes}
-    \end{threeparttable}
-\end{table}
 \end{columns}
 \end{frame}
 
+\begin{frame}{KE and Lemmatizing}
+    \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+    \column{.45\textwidth} % Left column and width
+    \begin{itemize}
+        \item The Scotch lexicon leads to poor lemmatization attempts
+        \item WordNet $:$ `peated' $\rightarrow$ `peated'
+        \item Whisky tasting notes are very feature rich
+        \item Default lemmatizer and KE methods performed poorly
+        \item Implemented an Eigencentrality KE method in Python
+    \end{itemize}
+            
+    \column{.5\textwidth} % Right column and width
+    \begin{table}
+        \centering
+        \begin{threeparttable}
+    
+            \caption{Times of TF-IDF, RAKE and eRAKE with various lemmatizers in seconds.}\label{tab:times}
+            \begin{tabular}{llll} 
+            \toprule
+                               & TF-IDF        & RAKE           & eRAKE           \\
+            U       & \textit{1247} & \textit{0.441} & \textit{-}      \\
+            WN & \textit{1461} & \textit{130.2} & \textit{-}      \\
+            WL   & \textit{1209} & \textit{4.947} & \textit{47.6}  \\
+            \bottomrule
+            \end{tabular}
+            \begin{tablenotes}
+                \small
+                \item \textbf{Note:} eRAKE was only applied to the WhiskyLemmatized corpus
+                as the eRake implementation included the WhiskyLemmatizer.
+                \item \emph{u}: Unlemmatized, \emph{WN}: WordNet, \emph{WL}: Whisky
+            \end{tablenotes}
+        \end{threeparttable}
+    \end{table}
+    \end{columns}
+    \end{frame}
 
 
 \begin{frame}{Clustering}
@@ -420,6 +427,15 @@ The model is re-trained after each update.
 
 \subsection{The Results}
 
+\begin{frame}{User Ratings}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{graphics/all_recommendations}
+        \caption{Boxplots of participant ratings for each recommendation, grouped by sample input. The grey line 
+        indicates the mean baseline rating.}\label{fig:allrec}
+    \end{figure}
+\end{frame}
+
 \begin{frame}{T-Test}
     \begin{block}{T-Test Results}
         \begin{itemize}
@@ -430,15 +446,6 @@ The model is re-trained after each update.
             \item There was a mean increase of $1.57$ points.
         \end{itemize}
     \end{block}
-\end{frame}
-
-\begin{frame}{User Ratings}
-    \begin{figure}[!htb]
-        \centering
-        \includegraphics[width=0.8\textwidth]{graphics/all_recommendations}
-        \caption{Boxplots of participant ratings for each recommendation, grouped by sample input. The grey line 
-        indicates the mean baseline rating.}\label{fig:allrec}
-    \end{figure}
 \end{frame}
 
 

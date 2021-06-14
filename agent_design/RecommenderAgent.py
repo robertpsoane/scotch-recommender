@@ -464,7 +464,7 @@ class WhiskyRecommender:
         self.trainModels()
         scotch = pd.read_csv(self.spath)
         scotch.append(update_df)
-        scotch.to_csv(self.spath)
+        scotch.to_csv(self.spath, index=False)
         self.dfToSQL(update_df, "whiskys", exists='append')
         self.trainModels()
         return
