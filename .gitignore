@@ -6,12 +6,12 @@ _archive
 sqlite3.exe
 
 # LaTeX Files
-.aux
-.bbl
-.blg
-.fdb_latexmk
-.fls
-.log
-.out
-.synctex.gz
-.toc
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
