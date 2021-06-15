@@ -1,6 +1,6 @@
 \section{Approach}\label{sec:approach}
 \subsection{Requirements}
-The following broad requirements were set out for the agent:
+The following broad requirements were defined:
 \begin{itemize}
     \item \textbf{Agent and Environment} - The recommender should be an agent acting in an environment. 
     The environment being the contents of the Master of Malt (MoM) website, and an interface with a user.
@@ -13,7 +13,7 @@ The following broad requirements were set out for the agent:
     \item \textbf{Updateable} - The agent should be able to automatically update
     it's database to include new whiskies, and retrain its language model.
     \item \textbf{Input Types} - The agents should recommend based on \emph{likes} 
-    \& \emph{dislikes} of whiskies supplied by a user, or from a users written 
+    \& \emph{dislikes} of whiskies supplied by a user, or from a user's written 
     tasting notes.
 \end{itemize}
 
@@ -24,30 +24,30 @@ In order to build a whisky specific language model (discussed further in
 Product data for a large range of scotch whiskies was scraped from
 \href{http://masterofmalt.com/}{masterofmalt.com}, this dataset contains a selection of attributes for each 
 whisky.\footnote{\href{http://masterofmalt.com/}{masterofmalt.com} is a major UK whisky and spirits retailer.}$^{,}$\footnote{The scraping process is discussed in \autoref{sssec:scrape}}
-The name and URL are hashed together using MD5 to provide an ID.
+Names and URLs are hashed together using MD5 to provide an ID.
 
 It was observed that whiskies which are discontinued tend to be listed
 without a price, whereas those which are merely out of stock are listed with a
-price.  For this reason, and for the sake of simplicty, price was taken as an
+price.  For this reason, simplicity's sake, price was taken as an
 indication of stock.  Those without a price
-were still recorded in the dataset for two reasons; users may wish to make recommendations
+were still recorded for two reasons; users may wish to make recommendations
 based on liking or disliking them, and they add to the corpus of tasting notes.
 
 \subsection{Choice of Recommender Method}
-While an online spirits shop may use CF recommenders to recommend people viewing a product view another
-similar product (such as recommending gin to customers who like gin etc.), a CF system may fail for
+While an online spirits shop may use CF recommenders to recommend products based on those being viewed
+(such as recommending gin to customers who like gin etc.), a CF system may fail for
 recommending whiskies based on tastes.
 
 It is not unlikely that a whisky drinker may wish to buy two very different whiskies in one order, just 
-to compare them, or they might enjoy a large range of whiskies. Similarily one might only like a large
+to compare them, or they might enjoy a large range of whiskies. Similarly one might like a large
 variety of whiskies, and browse and purchase many different styles frequently. 
-It seems somewhat unlikely that shopping habits of whisky enthusiasts is sufficient to recommend a whisky
-on the basis of specific tastes.
+It seems unlikely that the shopping habits of whisky enthusiasts is sufficient to recommend a whisky
+based on specific tastes.
 
 For that reason, a CB recommender model was chosen to be implemented, based upon tasting note data.
 
 \subsection{NLP Methods}\label{whiskylang}
-Word2vec and BoW were both considered as candidate langauge models. While there are
+Word2vec and BoW were both considered as candidate language models. While there are
 many pretrained models available, these are likely to be unsuitable due to whisky's lexicon.
 
 Word2vec encapsulates a far greater amount of semantic data, however re-training
@@ -57,15 +57,15 @@ BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure discussed i
 
 \subsubsection{The Ideal Vector and Similarity}\label{sssec:cossim}
 BoW maps each input to a vector. To make recommendations, the agent must
-map the user input to a vector in the same space as the BoW model. This
+map user input to a vector in the same space as the BoW model. This
 \emph{Ideal Vector} (IV) represents a hypothetical whisky which best represents 
-the user's input. Cosine similarity can then be used to ascertain which whiskies in 
+the user's input. Cosine similarity can be used to ascertain which whiskies in 
 the database best match the input.  Cosine similarity indicates the angle between
 vectors \cite{Melville2010}. As  
 \begin{equation}
     \utilde{u} \cdot \utilde{v} \coloneqq \vert \utilde{u} \vert \vert \utilde{v} \vert \cos{\theta}
 \end{equation}
-for $\utilde{u}, \utilde{v}\in \mathbb{R} ^{k}$, by storing all vectors normalised, this reduces such
+for $\utilde{u}, \utilde{v}\in \mathbb{R} ^{k}$, by keeping all vectors normalised, this reduces such
 that the cosine similarity of $\utilde{u}$ \& $\utilde{v}$ is simply their scalar product.
 
 Calculating cosine similarity for a large dataset is relatively straightforward.
@@ -95,7 +95,7 @@ or
         c_1 \\ c_2 \\ c_3 \\ ... \\ c_n
     \end{pmatrix}
 \end{equation}
-gives the cosine similarities between IV and each whisky in $D$, where $\utilde{c}$ is our vector of cosine similarities.
+gives cosine similarities between IV and each whisky in $D$, where $\utilde{c}$ is our vector of cosine similarities.
 
 
 
@@ -139,9 +139,9 @@ finding keywords from far less keyword dense text. This must be considered when 
 \end{table}
 
 \subsubsection{Eigencentrality based Rapid Automatic Keyword Extraction (eRAKE)}\label{ssec:erake}
-As discussed in section \ref{sssec:gbkwe}, co-occurence graphs can be useful for KE.  RAKE is onesuch method where primitive
+As discussed in section \ref{sssec:gbkwe}, co-occurrence graphs can be useful for KE.  RAKE is one such method where primitive
 centrality measures are used to rank nodes.  Another such method uses eigencentrality.  This steps beyond words which
-themselves have a high co-occurence and rewards words with significantly weighted edges to words with high co-occurences.
+themselves have a high co-occurrence and rewards words with significantly weighted edges to words with high co-occurrences.
 This could be a reasonable compromise for retaining semantic data.  While losing full semantic data we are
 at least stepping beyond merely looking at frequencies, selecting descriptors with larger amounts of influence across
 the dataset.

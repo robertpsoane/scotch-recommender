@@ -4,6 +4,7 @@ __pycache__
 _archive
 .vscode
 sqlite3.exe
+venv
 
 # LaTeX Files
 *.aux

@@ -461,7 +461,6 @@ class WhiskyRecommender:
         """
         ids = self.getAllIDs()
         update_df = getUpdates("updates", ids, UPDATE_N)
-        self.trainModels()
         scotch = pd.read_csv(self.spath)
         scotch.append(update_df)
         scotch.to_csv(self.spath, index=False)
@@ -832,6 +831,12 @@ class BaselineRecommender(WhiskyRecommender):
 
 
 if __name__ == "__main__":
+    """
+    Runs equivalent of Demo.ipynb notebook if ran as main
+    """
+    from pprint import pprint
     recommender = WhiskyRecommender()
-    print(recommender.updateWhiskies())
+
+    recommender.updateWhiskies()
+
         

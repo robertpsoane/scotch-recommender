@@ -3,10 +3,10 @@
 To evaluate the performance of the agent, a sample dataset of potential user inputs and agent outputs 
 was produced.  A description of each input can be found in \autoref{tab:evaltests}. Random sampling 
 was used to produce baseline recommendations.  These were 
-used in a survey given to 30 whisky enthusiasts to complete.\footnote{See \autoref{sec:StatementOnEthics}
+used in a survey which 30 whisky enthusiasts completed.\footnote{See \autoref{sec:StatementOnEthics}
 regarding ethics.}.
- They were asked to rate each recommendation on the basis of the corresponding user input.  
-While the agent recommends 10 whiskies by default, only 3 recommendations were give from the baseline and agent
+They were asked to rate each recommendation on the basis of the corresponding input.  
+While the agent recommends 10 whiskies by default, only 3 recommendations were given from the baseline and agent
 to avoid making the survey too cumbersome.
 
 \begin{table}
@@ -27,18 +27,18 @@ to avoid making the survey too cumbersome.
     \end{tabular}
 \end{table}
 
-The participants were given all information available to the 
+Participants were given all information available to the 
 agent for each output including description and tasting notes (and some information the agent does not use such as 
 ABV, Price etc), however they were instructed not to factor price in their ratings as price parameters were set 
-by the hypothetical user. There was also an option to leave text feedback.
+by the hypothetical user. There was an option to leave text feedback.
 
 \subsection{Results}\label{sec:res}
 
 As can be seen in figures \ref{fig:allrec} and \ref{fig:avgrec}, most recommendations were rated higher than 
 the mean baseline. 
 
-A paired one-tailed t-test was conducted on the baseline scores and the corresponding recommender scores for
-each sample input. There was a significant increase in scores from the model ($M=6.28$, $SD=1.13$)
+A paired one-tailed t-test was conducted on the baseline scores and corresponding recommender scores for
+each sample input. There was a significant increase in scores from the recommender ($M=6.28$, $SD=1.13$)
 compared with the baseline ($M=4.71$, $SD=1.15$), $t(12) = 2.22$, $p<0.05$. There was a mean increase of $1.57$ 
 points.
 
@@ -57,20 +57,20 @@ points.
 \end{figure}
 
 \subsection{Discussion}\label{sec:disc}
-Despite the promising results, it is clear that some 
+Despite promising results, it is clear that some 
 recommendations received a large range of ratings.  The small samples used, both of enthusiasts and 
 inputs/recommendations, are far from ideal.
 
-Further, on reading the free-text responses, it's clear that some participants weren't confident
-in their knowledge of whisky. Similarly some participants hadn't followed the instructions, for example
-one participant stated that they had penalised recommendations with high prices.
+On reading the free-text responses, it's clear that some participants weren't confident
+in their whisky knowledge. Similarly some participants hadn't followed the instructions, for example
+one participant stated they had penalised recommendations with high prices.
 
-A few interesting points were made which are worth considering.  One participant suggested that the sample input
+A few interesting points were made which are worth considering.  One participant suggested that the input
 for ATN1 was contradictory, perhaps explaining its relatively low score. This suggests that (as intended) this 
-recommender method is not ideal for taking a users entire taste profile and providing recommendations, 
+recommender method is not ideal for taking a users entire taste profile, 
 rather recommending a whisky to try based on similarity between a small number of tried whiskies.  It would
 be interesting to investigate whether such a system is possible in the specific case of whisky.
 
-Many users pointed out that many of the recommendations were very niche, suggesting an extra filter could be
-incorporated allowing a user to filter out single-cask/independent bottles.  This also could have had an 
-impact on accuracy of participants scores.
+Many users pointed out that many recommendations were very niche, suggesting an extra filter could be
+incorporated allowing a user to filter out single-cask/independent bottles.  This also could have impacted
+the accuracy of participant's scores.
