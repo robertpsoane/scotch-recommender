@@ -35,7 +35,7 @@ Natural Language Tool Kit (NLTK), which queries the WordNet corpus to find the r
 \subsubsection{Keyword Extraction}\label{sssec:kwe}
 For syntactic methods, keyword extraction (KE) is key.  For the purposes of this report, a keyword is a word of particular
 relevance or importance, and from which we might extract useful information.  KE refers to strategies
-based on which those important words can be ranked, keeping only the most relevant.
+based on which those important words can be ranked, keeping the most relevant.
 
 \paragraph{TF-IDF}\label{ssec:tfidf}
 
@@ -100,15 +100,15 @@ An interesting design choice was to recommend on the basis of a user's entire pr
 ratings they give.  Perhaps unsurprisingly their CB model performed poorly with users who gave large 
 numbers of reviews. The more reviews the more noise.
 
-I think that an agent would be far more effective if it took a set of specific user preferences,
+I think an agent would be more effective if it takes specific user preferences
 at a given point in time, and makes a recommendation on that basis.  Instead of attempting
 to offer users a whisky which best matches all varied whiskies they like, users get
-recommendations of the style they want at the time.  This is far 
+recommendations of the style they want at the time.  This is 
 closer to Coldevin's approach.
 
 Wishart completed what seems to be the only study of whisky which uses NLP \cite{Wishart2000}.
 Working with industry experts he selected 84 different whiskies and extracted descriptors from their tasting notes. 
-These were coded and used to cluster the whiskies. These clusters were manually reviewed and evaluated by 
+These were coded and used to cluster the whiskies. These clusters were reviewed and evaluated by 
 industry experts.  He later proposed a set of 12 flavour dimensions for Scotch whisky \cite{Wishart2009}.
 
 While groundbreaking, Whisharts work differs somewhat from that carried out in this project.  Where Wishart aimed to find

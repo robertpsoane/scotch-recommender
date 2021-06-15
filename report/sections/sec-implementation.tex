@@ -29,7 +29,7 @@ iterative process based on the lemmatizer's outputs.
 \subsubsection{Comparing KE Strategies}\label{sssec:kwecomp}
 As over time the lexicon may change, the agent should perform KE with each training 
 cycle. KE takes a significant proportion of time for model building. For this reason time and accuracy are of equal
-importance.  It is little use performing KE perfectly if it takes forever.
+importance.  Perfect KE is of little use if it takes forever.
 
 An adapted implementation of TF-IDF \cite{tf_idf_imp} the \emph{rake-nltk} python package \cite{sharmer_2018}, and a
 new implementation eRAKE were applied to the dataset with a range of lemmatizers to extract the top 300 keywords.
@@ -137,8 +137,8 @@ evaluation at this stage.  This approach was used due to time constraints.}
 
 There is little difference between TF-IDF and TF-IDF*, apart from Edradour being clustered with GlenAllachie and Aberlour 
 (two heavily sherried expressions) in TF-IDF*, and Blair Athol.  Blair Athol is a relatively sherried expression,
-and thus appearing in a very smoke and peat heavy cluster (Laphroaig, Ardbeg, Talisker) seems strange. It's placement in 
-TF-IDF* seems far more sensible.
+and thus appearing in a peat heavy cluster (Laphroaig, Ardbeg, Talisker) seems strange. It's TF-IDF* placement
+ seems far more sensible.
 
 When considering tasting notes, Blair Athol is described as 
 \emph{``Nutty with sherried notes. Gentle peat. Crisp. ... Peat smoke, syrup ...''} \cite{mom_ba}.  This highlights a limitation
@@ -155,21 +155,21 @@ All inputs/outputs use Python dictionaries.  While this may seem strange, this i
 could be designed to send data in JSON formats.
 
 \subsubsection{The Database}\label{sssec:db}
-An SQLite database is used to store all whisky data and models.  This is implemented directly in Python and
+An SQLite database is used to store all whisky data and models.  This is included in Python and
 allows multiple agents to access the data at the same time.  This also allows one agent to update the models
 and all other agents will use the up to date model.  It was observed that SQLite runs faster than 
 Pandas \cite{reback2020pandas}, however Pandas is still used 
-for some data manipulations once data is loaded from the database.
+for some manipulations once data is loaded from the database.
 
 When loaded, the agent checks if there's a database. If there isn't, it is built from the pre-existing \emph{scotch.csv} file.
 
 \subsubsection{Web Scraping}\label{sssec:scrape}
 The initial dataset was collected using a rough script using Python and \emph{Beautiful 
-Soup}~\cite{richardson2007beautiful}. The agent was designed using this dataset of approximately 14,000
+Soup}~\cite{richardson2007beautiful}. The agent was designed using this dataset of $\sim$14,000
 whiskies.  As per the requirements, and to ensure the agent's autonomy, a method was written to fetch new
 whiskies. If the initial dataset is not present, the agent will automatically fetch all data.
 
-The new whiskies page on MoM's website is parsed and each listing
+The `new whiskies' page on MoM's website is parsed and each listing
 is checked to confirm it is Scotch.  When each ID is created, it is checked against those already in the
 database.  If three consecutive listings are already in the database, the agent stops, assuming all new products
 have been included. Sometimes one or two re-stocked whiskies are listed in succession.
@@ -202,7 +202,7 @@ Four models are created, described in \autoref{tab:models}.
 As discussed in section \ref{sssec:cossim}, cosine similarity is used to provide recommendations.
 Where recommendations are made based on more than one model, the mean of the similarities is used.
 As Pandas can be quite slow due to its single-threaded nature, especially
-when converting a long list of entries into a dataframe. To minimise this effect, the users filtering input 
+when converting a long list of entries into a dataframe. To minimise this effect, the user's filtering input 
 (price, ABV etc.) is used to get the set of all IDs from which a recommendation can be made.
 Only these whiskies are queried from the database.
 
@@ -219,4 +219,4 @@ for the tasting notes.
 An interesting feature implemented is the \emph{Dream Dram} recommender.  This takes unstructured text describing
 a `dream' whisky and makes a recommendation on that basis. This works in much the same way as the other recommendations, 
 however the IV is generated on the basis of the text input instead of by querying for specific whiskies. This option 
-could potentially be incorporated into a Whisky chat bot at a later date.
+could be incorporated into a Whisky chat bot at a later date.

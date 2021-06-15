@@ -6,12 +6,12 @@ The following broad requirements were defined:
     The environment being the contents of the Master of Malt (MoM) website, and an interface with a user.
     The agent could be considered as part of a backend of a web app with outputs in a Python dictionary/JSON
     format.\footnote{\textbf{Note:} The webapp was beyond the scope of this project}
-    \item \textbf{Speed} - The agent should be able to produce a recommendation
+    \item \textbf{Speed} - The agent should be able to recommend
     within a couple of seconds.
     \item \textbf{Customisable} - An end user should be able to filter by price,
-    volume and abv.
+    volume and ABV.
     \item \textbf{Updateable} - The agent should be able to automatically update
-    it's database to include new whiskies, and retrain its language model.
+    it's database, and retrain its models.
     \item \textbf{Input Types} - The agents should recommend based on \emph{likes} 
     \& \emph{dislikes} of whiskies supplied by a user, or from a user's written 
     tasting notes.
@@ -27,7 +27,7 @@ whisky.\footnote{\href{http://masterofmalt.com/}{masterofmalt.com} is a major UK
 Names and URLs are hashed together using MD5 to provide an ID.
 
 It was observed that whiskies which are discontinued tend to be listed
-without a price, whereas those which are merely out of stock are listed with a
+without a price, whereas those which are out of stock are listed with a
 price.  For this reason, simplicity's sake, price was taken as an
 indication of stock.  Those without a price
 were still recorded for two reasons; users may wish to make recommendations
@@ -39,18 +39,18 @@ While an online spirits shop may use CF recommenders to recommend products based
 recommending whiskies based on tastes.
 
 It is not unlikely that a whisky drinker may wish to buy two very different whiskies in one order, just 
-to compare them, or they might enjoy a large range of whiskies. Similarly one might like a large
-variety of whiskies, and browse and purchase many different styles frequently. 
+to compare them, or they might enjoy a large range of whiskies. One might like a large
+variety of whiskies, and purchase many different styles frequently. 
 It seems unlikely that the shopping habits of whisky enthusiasts is sufficient to recommend a whisky
 based on specific tastes.
 
-For that reason, a CB recommender model was chosen to be implemented, based upon tasting note data.
+For that reason, a CB recommender model was chosen, using tasting note data.
 
 \subsection{NLP Methods}\label{whiskylang}
-Word2vec and BoW were both considered as candidate language models. While there are
-many pretrained models available, these are likely to be unsuitable due to whisky's lexicon.
+Word2vec and BoW were both considered as language models. While there are
+many pretrained models available, these are likely unsuitable due to whisky's lexicon.
 
-Word2vec encapsulates a far greater amount of semantic data, however re-training
+Word2vec encapsulates far more semantic data, however re-training
 word2vec regularly with new data would be expensive. As a quicker model to train
 BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure discussed in 
 \autoref{ssec:erake} were considered for KE.
@@ -59,16 +59,16 @@ BoW was chosen.  TF-IDF, RAKE and an eigencentrality ranking measure discussed i
 BoW maps each input to a vector. To make recommendations, the agent must
 map user input to a vector in the same space as the BoW model. This
 \emph{Ideal Vector} (IV) represents a hypothetical whisky which best represents 
-the user's input. Cosine similarity can be used to ascertain which whiskies in 
+the input. Cosine similarity can be used to ascertain which whiskies in 
 the database best match the input.  Cosine similarity indicates the angle between
 vectors \cite{Melville2010}. As  
 \begin{equation}
     \utilde{u} \cdot \utilde{v} \coloneqq \vert \utilde{u} \vert \vert \utilde{v} \vert \cos{\theta}
 \end{equation}
 for $\utilde{u}, \utilde{v}\in \mathbb{R} ^{k}$, by keeping all vectors normalised, this reduces such
-that the cosine similarity of $\utilde{u}$ \& $\utilde{v}$ is simply their scalar product.
+that the cosine similarity of $\utilde{u}$ \& $\utilde{v}$ is their scalar product.
 
-Calculating cosine similarity for a large dataset is relatively straightforward.
+Calculating cosine similarity for a large dataset is straightforward.
 Consider our dataset of $m$ whiskies as
 \begin{equation}
     \textbf{D} \in \mathbb{R}^{m \times n}
@@ -101,9 +101,10 @@ gives cosine similarities between IV and each whisky in $D$, where $\utilde{c}$ 
 
 
 \subsubsection{Tasting Notes}\label{ssec:tnotes}
-Quite usefully, as shown in table \ref{tab:tnotes}, whisky tasting notes are very keyword dense.\footnote{All table data from \href{http://masterofmalt.com/}{masterofmalt.com}}
-This means most words are candidate keywords, however some KE techniques (such as RAKE) are aimed at 
-finding keywords from far less keyword dense text. This must be considered when choosing a KE method.
+As shown in table \ref{tab:tnotes}, whisky tasting notes are keyword dense.\footnote{All table
+data from \href{http://masterofmalt.com/}{masterofmalt.com}}
+Most words are candidate keywords, however some KE techniques (such as RAKE) aim to 
+find keywords from far less keyword dense text. This must be considered when choosing a KE method.
 
 \begin{table}
     \centering
@@ -140,11 +141,11 @@ finding keywords from far less keyword dense text. This must be considered when 
 
 \subsubsection{Eigencentrality based Rapid Automatic Keyword Extraction (eRAKE)}\label{ssec:erake}
 As discussed in section \ref{sssec:gbkwe}, co-occurrence graphs can be useful for KE.  RAKE is one such method where primitive
-centrality measures are used to rank nodes.  Another such method uses eigencentrality.  This steps beyond words which
-themselves have a high co-occurrence and rewards words with significantly weighted edges to words with high co-occurrences.
-This could be a reasonable compromise for retaining semantic data.  While losing full semantic data we are
-at least stepping beyond merely looking at frequencies, selecting descriptors with larger amounts of influence across
-the dataset.
+centrality measures are used to rank nodes.  Another method uses eigencentrality.  This steps beyond words which
+themselves have a high co-occurrence and rewards words with significantly edges to words with high co-occurrences.
+This could be a compromise for retaining semantic data.  While losing full semantic data we are
+at least stepping beyond merely looking at frequencies, selecting descriptors with larger amounts of influence 
+across the dataset.
 
-As the graph is undirected, our adjacency matrix is hermitian and thus its eigenvectors relatively simple to find,
-this can be completed using SciPy's $eigh()$ function \cite{hubbard_2020, 2020NumPy}.
+As the graph is undirected, our adjacency matrix is hermitian and thus finding it's eigenvectors is trivial,
+SciPy's $eigh()$ function can be used \cite{hubbard_2020, 2020NumPy}.
