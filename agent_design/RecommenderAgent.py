@@ -1,4 +1,23 @@
+"""
+RecommenderAgent
 
+Recommends scotch whisky on the basis of user inputs.
+Use the following functions:
+
+- getWhiskyByID(ID) : returns the whisky of the given id
+- searchWhiskys(term, col) : returns all columns with the term in the column
+- searchByName(term)/searchByDesc(term) : return whiskys with name/description like term.
+- searchByURL(url) : search by MoM url, return name and ID only.
+
+- addReview(review) : Adds review to whisky
+- trainModels() : Retrain all models based on any new data
+- updateWhiskies() : Fetch new whiskies from Master of Malt
+
+- recommend() : Recommend based on liked and disliked whiskies
+- recommendDD() : Recommend based on users dream dram input
+
+Please see Demo.ipynb to see these being used.
+"""
 from time import time
 from typing import List, TypedDict
 import pandas as pd
@@ -18,6 +37,7 @@ from modules.scraping.scraping import getUpdates
 from modules.types import *
 import warnings
 warnings.filterwarnings('ignore')
+
 
 
 # Constants:
