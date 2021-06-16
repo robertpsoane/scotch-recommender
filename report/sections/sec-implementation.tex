@@ -9,11 +9,11 @@ Implementation was split into the following two broad phases:
 These are discussed in sections \ref{ssec:phase1} \& \ref{ssec:phase2} respectively.
 
 \subsection{Data Exploration}\label{ssec:phase1}
-\subsubsection{Effective Lemmatizing}\label{words}
+\subsubsection{Effective lemmatizing}\label{words}
 Given whisky's specific lexicon, an interesting problem occurs when trying to use gerneral purpose lemmatizers.
 In whisky `peated' is a verb describing how the grain was processed, and thus the `peaty' (smokey) flavour has been 
 imparted on the finished spirit.  In English, peat refers to a natural fuel made from dead plant matter,
-and `peated' does not exist \cite{jenner_2019}. 
+and `peated' does not exist \cite{old}. 
 `Peated' and `peaty' should both reduce to `peat', however as they are not considered 
 as verbs in WordNet.  For this reason a separate custom whisky lemmatizer was built.
 
@@ -26,7 +26,7 @@ After experimentation with this WhiskyLemmatizer, words in the cache which are m
 were automatically updated to map to the leaf word. A set of stopwords was manually produced in an 
 iterative process based on the lemmatizer's outputs.
 
-\subsubsection{Comparing KE Strategies}\label{sssec:kwecomp}
+\subsubsection{Comparing KE strategies}\label{sssec:kwecomp}
 As over time the lexicon may change, the agent should perform KE with each training 
 cycle. KE takes a significant proportion of time for model building. For this reason time and accuracy are of equal
 importance.  Perfect KE is of little use if it takes forever.
@@ -125,6 +125,7 @@ in terms of which words were extracted.
         \small
         \item TF-IDF and RAKE refer to these extractions applied both WordNet and unlemmatized. They produced the same results. TF-IDF* is TF-IDF used with WhiskyLemmatizer
         \item Cluster Features refers to the three most prominent features at the centers of the cluster.
+        \newline
     \end{tablenotes}
 \end{threeparttable}
 
@@ -154,7 +155,7 @@ The agent was designed as a single Python class, with a few helper classes and f
 All inputs/outputs use Python dictionaries.  While this may seem strange, this is with the view that a web frontend
 could be designed to send data in JSON formats.
 
-\subsubsection{The Database}\label{sssec:db}
+\subsubsection{The database}\label{sssec:db}
 An SQLite database is used to store all whisky data and models.  This is included in Python and
 allows multiple agents to access the data at the same time.  This also allows one agent to update the models
 and all other agents will use the up to date model.  It was observed that SQLite runs faster than 
@@ -163,7 +164,7 @@ for some manipulations once data is loaded from the database.
 
 When loaded, the agent checks if there's a database. If there isn't, it is built from the pre-existing \emph{scotch.csv} file.
 
-\subsubsection{Web Scraping}\label{sssec:scrape}
+\subsubsection{Web scraping}\label{sssec:scrape}
 The initial dataset was collected using a rough script using Python and \emph{Beautiful 
 Soup}~\cite{richardson2007beautiful}. The agent was designed using this dataset of $\sim$14,000
 whiskies.  As per the requirements, and to ensure the agent's autonomy, a method was written to fetch new
@@ -178,7 +179,7 @@ Setting three as the threshold reduces the risk of stopping prematurely.
 While this function could be set to run periodically, this hasn't been implemented to avoid unnecessarily 
 using MoM's server.
 
-\subsubsection{Model Training}
+\subsubsection{Model training}
 eRAKE is used to lemmatize all tasting notes, and extract 300 keywords for each model.  These are 
 then vectorised and the dataset is transformed to a matrix $\textbf{M} \in \mathbb{R}^{m \times n}$, with each
 row a normalised vector on a 300-dimensional hypersphere. Each $\textbf{M}$ is stored with each whisky's corresponding ID.
@@ -198,7 +199,7 @@ Four models are created, described in \autoref{tab:models}.
     \end{tabular}
 \end{table}
 
-\subsubsection{Producing Recommendations}
+\subsubsection{Producing recommendations}
 As discussed in section \ref{sssec:cossim}, cosine similarity is used to provide recommendations.
 Where recommendations are made based on more than one model, the mean of the similarities is used.
 As Pandas can be quite slow due to its single-threaded nature, especially

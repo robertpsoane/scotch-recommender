@@ -18,7 +18,7 @@ Each document is
 transformed to a vector $\utilde{v}\in \mathbb{R} ^{k}$ such that $v_i$ is the frequency 
 of the word $b_i$ occuring in the document \cite{Cambria2014, StevenBirdEwanKlein2009, Zhang2010}.\footnote{It is common to refer to an instance in a text dataset as a \emph{document}}
 
-\subsubsection{Stemming and Lemmatization}\label{sssec:stemlemma}
+\subsubsection{Stemming and lemmatization}\label{sssec:stemlemma}
 When dealing with text data, it is not uncommon to have multiple forms of the same word.  A syntactic model would view
 the words `cat' and `cats' as two different discrete symbols.  A method is needed to reduce words to a normal form.
 
@@ -32,7 +32,7 @@ form of the word \cite{Jayakodi2016}.  One lemmatizer implementation in Python i
 Natural Language Tool Kit (NLTK), which queries the WordNet corpus to find the root word 
 \cite{StevenBirdEwanKlein2009, princetonuniversity_2010}. 
  
-\subsubsection{Keyword Extraction}\label{sssec:kwe}
+\subsubsection{Keyword extraction}\label{sssec:kwe}
 For syntactic methods, keyword extraction (KE) is key.  For the purposes of this report, a keyword is a word of particular
 relevance or importance, and from which we might extract useful information.  KE refers to strategies
 based on which those important words can be ranked, keeping the most relevant.
@@ -89,7 +89,7 @@ Content based (CB) recommender engines are the opposite.  Instead of focussing o
 on the basis of specific attributes of each entity being recommended \cite{Melville2010, Mooney2000}.  While such a 
 system may use user details, the main knowledge source is the entities being recommended.
 
-\subsection{AI applications to Whisky}\label{ssec:ml2whisk}
+\subsection{AI Applications to Whisky}\label{ssec:ml2whisk}
 
 There is a large gap in the research regarding Artificial Intelligence (AI) applications to whisky.
 Coldevin built an agent based whisky recommender, choosing to use a CB design \cite{Coldevin2005}.  He 
